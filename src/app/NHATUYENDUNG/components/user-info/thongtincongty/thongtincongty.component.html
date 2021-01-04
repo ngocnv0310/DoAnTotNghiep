@@ -1,0 +1,445 @@
+<div class="container">
+  <!-- thông tin tài khoản -->
+  <div class="card tab-info">
+    <div class="card-header">
+      <h3>THÔNG TIN TÀI KHOẢN</h3>
+    </div>
+    <div class="card-body" style="padding-bottom: 0px;">
+      <div class="info">
+        <div class="row">
+          <div class="col-2">Email truy cập:</div>
+          <div class="col-4" style="font-size: 16px;">{{ nhatuyendung.email }}</div>
+        </div>
+        <div class="row" style="margin-top: 15px;">
+          <div class="col-2">Mật khẩu:</div>
+          <div class="col-4">**************</div>
+          <a (click)="isShow()">
+            <span style="color: var(--main);">Cập nhật mật khẩu</span>
+          </a>
+        </div>
+      </div>
+      <br />
+      <div class="doimatkhau" *ngIf="show">
+        <form
+          #doimatkhau="ngForm"
+          class="card-body"
+          (ngSubmit)="Doimatkhau(doimatkhau)"
+          style="margin-left: -20px;"
+        >
+          <div class="form-group row">
+            <label class="col-2"
+              >Mật khẩu hiện tại<span class="text-danger">*</span></label
+            >
+            <input
+              type="password"
+              name="matkhau"
+              ngModel
+              class="form-control col-4"
+              placeholder=""
+            />
+          </div>
+          <div class="form-group row">
+            <label class="col-2"
+              >Mật khẩu mới<span class="text-danger">*</span></label
+            >
+            <input
+              type="password"
+              name="matkhaumoi"
+              ngModel
+              class="form-control col-4"
+              placeholder=""
+            />
+          </div>
+          <p style="font-size: 12px; color: #b3b3b3; margin-left: 165px;">
+            Mật khẩu tử 6 đến 50 ký tự. Có chứa ký tự hoa, thường và số
+          </p>
+          <div class="form-group row">
+            <label class="col-2"
+              >Xác nhận mật khẩu<span class="text-danger">*</span></label
+            >
+            <input
+              type="password"
+              name="xacnhanmatkhau"
+              ngModel
+              class="form-control col-4"
+              placeholder=""
+            />
+          </div>
+          <div class="row submit">
+            <button class="btn btnluu">Lưu</button>
+            <a
+              class="btn btnhuy"
+              style="color: #f48120; border-color: #f48120;"
+              (click)="isShow()"
+              >Hủy</a
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- ===================================================================== -->
+  <!-- ===================================================================== -->
+  <!-- Thông tin chung -->
+  <div class="card tab-info">
+    <div class="card-header">
+      <h3>THÔNG TIN CHUNG</h3>
+    </div>
+    <div class="card-body"  *ngIf="!showi4">
+            <div class="row">
+            <div class="col-6">
+                <div class="form-group row">
+                    <div class="col-4" style="font-size: 14px; color: #B3B3B3;">Tên công ty</div>
+                    <div [ngClass]="{'text-main': !nhatuyendung.tencongty}" class="col-8 text">{{ nhatuyendung.tencongty?nhatuyendung.tencongty :'Cập nhật tên công ty' }}</div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row">
+                    <label class="col-4" style="font-size: 14px; color: #B3B3B3;">Tên viết tắt</label>
+                    <label [ngClass]="{'text-main': !nhatuyendung.tenviettat}" class="col-8 text">{{ nhatuyendung.tenviettat?nhatuyendung.tenviettat:'Cập nhật tên viết tắt công ty' }} </label>
+                </div>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group row">
+                        <div class="col-4" style="font-size: 14px; color: #B3B3B3;">Ngành nghề</div>
+                        <div [ngClass]="{'text-main': !nganh}" class="col-8 text">{{ nganh?nganh:'Cập nhật ngành nghề hoạt động' }}</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group row">
+                        <label class="col-4" style="font-size: 14px; color: #B3B3B3;">Quy mô công ty</label>
+                        <label [ngClass]="{'text-main': !nhatuyendung.quymocongty}" class="col-8 text">{{ nhatuyendung.quymocongty?nhatuyendung.quymocongty:'Cập nhật quy mô công ty' }} </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group row">
+                        <div class="col-4" style="font-size: 14px; color: #B3B3B3;">Địa chỉ</div>
+                        <div [ngClass]="{'text-main': !nhatuyendung.diachi}" class="col-8 text">{{ nhatuyendung.diachi?nhatuyendung.diachi:'Cập nhật địa chỉ công ty' }}</div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!-- logo công ty để ở đây -->
+            <div class="form-group row">
+              <label class="col-2">Logo</label>
+              <div class="col-10 info">
+                <img *ngIf="!nhatuyendung.sociallogin"
+                  [src]="createImgPath(nhatuyendung.logo)"
+                  width="100px"
+                  height="100px"
+                  alt="logo-user"
+                />
+                <img *ngIf="nhatuyendung.sociallogin"
+                src="{{ nhatuyendung.logo }}"
+                  width="100px"
+                  height="100px"
+                  alt="logo-user"
+                />
+
+                <br />
+              </div>
+            </div>
+            <br>
+            <div class="form-group row">
+              <label class="col-2"
+                >Banner công ty</label
+              >
+              <div class="col-10 banner">
+                <div *ngIf="nhatuyendung.bannercongty; else hide">
+                  <img
+                    [src]="createImgPath(nhatuyendung.bannercongty)"
+                    
+                    alt="logo-user"
+                  />
+                  <br />
+                </div>
+                <ng-template #hide>
+                  <span class="text-main">Cập nhật banner tuyển dụng của công ty để tuyển dụng hiệu quả hơn</span>
+                </ng-template>
+      
+              </div>
+            </div>
+            <br />
+            <div class="form-group row">
+              <label class="col-2">Hình ảnh công ty</label>
+              <div class="col-10 banner">
+                <div *ngIf="nhatuyendung.hinhanh; else an">
+                  <img
+                    [src]="createImgPath(nhatuyendung.hinhanh)"
+                    
+                    alt="logo-user"
+                  />
+                  <br />
+                </div>
+                <ng-template #an>
+                  <span class="text-main">Cập nhật hình ảnh của công ty để tuyển dụng hiệu quả hơn</span>
+                </ng-template>
+                <div class="row" style="margin-bottom: 15px;">
+                  
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="form-group row">
+              <label class="col-2">Video công ty</label>
+              <div class="col-10">
+                <label class="col-6" [ngClass]="{'text-main': !nhatuyendung.videogioithieu}">{{ nhatuyendung.videogioithieu?nhatuyendung.videogioithieu:'Thêm video giới thiệu về công ty của bạn' }} </label>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-2">Website công ty</label>
+              <div class="col-10">
+                <label class="col-6" [ngClass]="{'text-main': !nhatuyendung.website}">{{ nhatuyendung.website?nhatuyendung.website:'Thêm địa chỉ website công ty' }} </label>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-2"
+                >Giới thiệu công ty</label
+              >
+              <div class="col-10">
+                <label [ngClass]="{'text-main': !nhatuyendung.gioithieucongty}" class="col-10">{{ nhatuyendung.gioithieucongty?nhatuyendung.gioithieucongty:'Giới thiệu về công ty của bạn' }} </label>
+              </div>
+            </div><hr>
+
+    </div>
+    <!------------------------------Sửa------------------------------>
+    <div *ngIf="showi4,else sua">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group row">
+              <label class="col-4" style="font-size: 14px;color: #B3B3B3;"
+                >Tên công ty <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control col-7"
+                placeholder=""
+                [(ngModel)]="nhatuyendung.tencongty"
+              />
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group row">
+              <label class="col-4" style="font-size: 14px;color: #B3B3B3;"
+                >Tên viết tắt <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control col-8"
+                [(ngModel)]="nhatuyendung.tenviettat"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group row">
+              <label class="col-4" style="font-size: 14px;color: #B3B3B3;"
+                >Ngành nghề <span class="text-danger">*</span></label>
+              <select class="form-control col-7" [(ngModel)]="nhatuyendung.nganhnghehoatdong">
+                <option [value]="item.idNganh" *ngFor="let item of listNganh" >{{item.tennganh}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group row">
+              <label class="col-4" style="font-size: 14px;color: #B3B3B3;"
+                >Quy mô công ty <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control col-8"
+                placeholder=""
+                [(ngModel)]="nhatuyendung.quymocongty"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- logo công ty để ở đây -->
+        <div class="form-group row">
+          <label class="col-2">Logo<span class="text-danger">*</span></label>
+          <div class="col-10 info">
+            <img *ngIf="!nhatuyendung.sociallogin"
+            [src]="createImgPath(nhatuyendung.logo)"
+            width="100px"
+            height="100px"
+            alt="logo-user"
+          />
+          <img *ngIf="nhatuyendung.sociallogin"
+          src="{{ nhatuyendung.logo }}"
+            width="100px"
+            height="100px"
+            alt="logo-user"
+          />
+            <br />
+            <br />
+            <p><a *ngIf="!nhatuyendung.sociallogin" (click)="file.click()">Thay đổi hình ảnh</a></p>
+            <div class="row" style="margin-bottom: 15px;">
+              <input
+                type="file"
+                #file
+                placeholder="Choose file"
+                (change)="uploadFile(file.files)"
+                accept="image/x-png,image/gif,image/jpeg"
+                style="display: none;"
+              />
+            </div>
+          </div>
+          
+        </div>
+        <div class="form-group row" style="margin-bottom: 0;">
+          <label class="col-2"
+            >Banner công ty <span class="text-danger">*</span></label
+          >
+          <div class="col-10 banner">
+            <div *ngIf="nhatuyendung.bannercongty; else hide">
+              <img
+                [src]="createImgPath(nhatuyendung.bannercongty)"
+                (click)="banner.click()"
+                alt="logo-user"
+              />
+              <a
+                ><i
+                  class="fa fa-trash float-right"
+                  (click)="nhatuyendung.bannercongty = null"
+                ></i
+              ></a>
+              <br />
+            </div>
+            <ng-template #hide>
+              <button class="btn btn-secondary" (click)="banner.click()">
+                Tải hình ảnh lên</button
+              ><br />
+            </ng-template>
+  
+            <div class="row" style="margin: 15px 0px;">
+              <input
+                type="file"
+                #banner
+                placeholder="Choose file"
+                (change)="uploadBanner(banner.files)"
+                accept="image/x-png,image/gif,image/jpeg"
+                style="display: none;"
+              />
+            </div>
+          </div>
+        </div>
+        <p style="font-size: 12px;
+        color: #b3b3b3;
+        margin-left: 17%;
+        margin-top: -10px;">
+          Tỉ lệ hình tiêu chuẩn 16:9 hoặc tối thiểu 512px x 288px không vượt quá
+          2MB.
+        </p>
+        <br />
+        <div class="form-group row" style="margin-bottom: 0;">
+          <label class="col-2">Hình ảnh công ty</label>
+          <div class="col-10 banner">
+            <div *ngIf="nhatuyendung.hinhanh; else an">
+              <img
+                [src]="createImgPath(nhatuyendung.hinhanh)"
+                (click)="hinhanh.click()"
+                alt="logo-user"
+              />  
+              <br />
+            </div>
+            <ng-template #an>
+              <button class="btn btn-secondary" (click)="hinhanh.click()">
+                Tải hình ảnh lên
+              </button>
+            </ng-template>
+            <div class="row" style="margin-bottom: 15px;">
+              <input
+                type="file"
+                #hinhanh
+                placeholder="Choose file"
+                (change)="uploadhinhanh(hinhanh.files)"
+                accept="image/x-png,image/gif,image/jpeg"
+                style="display: none;"
+              />
+            </div>
+          </div>
+        </div>
+        <p style="font-size: 12px;
+        color: #b3b3b3;
+        margin-left: 17%;
+        margin-top: -10px;">
+          Tỉ lệ hình tiêu chuẩn 16:9 hoặc tối thiểu 512px x 288px không vượt quá
+          2MB.
+        </p>
+        <br />
+        <div class="form-group row">
+          <label class="col-2">Video công ty</label>
+          <div class="col-10">
+            <input
+              type="text"
+              placeholder="sao chép địa chỉ youtube dán vào đây"
+              name="diachi"
+              class="form-control"
+              [(ngModel)]="nhatuyendung.videogioithieu"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2">Website công ty</label>
+          <div class="col-10">
+            <input
+              type="text"
+              placeholder="sao chép địa chỉ youtube dán vào đây"
+              name="diachi"
+              class="form-control"
+              [(ngModel)]="nhatuyendung.website"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2"
+            >Giới thiệu công ty<span class="text-danger">*</span></label
+          >
+          <div class="col-10">
+            <textarea
+              class="form-control"
+              placeholder="Vui lòng giới thiệu bản thân và miêu tả mục tiêu nghề nghiệp"
+              rows="5"
+              [(ngModel)]="nhatuyendung.gioithieucongty"
+            ></textarea>
+            <small id="helpId" class="text-muted">Tối đa 5000 ký tự</small>
+          </div>
+        </div>
+        <div class="float-right submit" style="margin-bottom: 10px;">
+          <button
+            type="submit"
+            class="btn"
+            style="background-color: var(--main); color: white;"
+            (click)="UpdateNTD()"
+          >
+            Lưu
+          </button>
+          <a
+            class="btn"
+            style="color: #f48120; border-color: #f48120;"
+            (click)="HuyData()"
+            >Hủy</a
+          >
+        </div>
+      </div>
+    </div>
+    <ng-template #sua>
+      <div class="row">
+        <div class="col-12">
+      <button class="btn float-right btn-outline-main" style="color:#f48120;" (click)="Suand()" style="width: 135px;margin-top: -27px;margin-right: 10px;margin-bottom: 6px;padding-top: 8px;">
+        <i class="fa fa-pencil" aria-hidden="true"></i>Sửa thông tin
+      </button>
+    </div>
+    </div>
+    </ng-template>
+    
+  </div>
+</div>

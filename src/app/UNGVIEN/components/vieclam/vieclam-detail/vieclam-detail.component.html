@@ -1,0 +1,60 @@
+<div class="header">
+</div>
+
+
+<div class="main">
+    <div class="container">
+        <div class="row tieude">
+            <div class="logo">
+                <img [src]="createImgPath(tintuyendung.logo)" *ngIf="tintuyendung.logo" alt="logo">
+            </div>
+            <div class="header-noidung">
+                <h3>{{tintuyendung.tieude | uppercase}}</h3>
+                <h6>{{tintuyendung.tencongty | uppercase}}</h6>
+                <h6>{{tintuyendung.tenthanhpho}}</h6>
+                <h6>Lương: <span *ngIf="tintuyendung.thuongluong, else then"> Thương lượng </span>
+                    <ng-template #then>
+                        {{tintuyendung.minluong|number}} - {{tintuyendung.maxluong|number}}
+                    </ng-template>
+                    
+                </h6>
+            </div>
+            <div class="btn-edit">
+                <div *ngIf="!isUngtuyen,else daungtuyen">
+                    <button class="btn btn-main" (click)="Ungtuyen()">
+                        Nộp đơn
+                    </button>
+                    <button class="btn btn-outline-main" [disabled]="clicked" (click)="actionMethod()">
+                        <span *ngIf="!clicked"><i class="fa fa-heart" ></i> Lưu công việc</span>
+                        <span *ngIf="clicked"><i class="fa fa-heart" ></i> Đã lưu</span>
+                    </button>
+                </div>
+                <ng-template #daungtuyen>
+                    <button disabled class="btn btn-main">
+                        Đã ứng tuyển
+                    </button>
+                </ng-template>
+                
+            </div>
+        </div>
+        <div class="selection">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" [class.chose]="step=='step1'" (click)="step='step1'"
+                        [routerLink]="['./thongtin']" routerLinkActive="router-link-active">Thông tin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [class.chose]="step=='step2'" (click)="step='step2'"
+                        [routerLink]="['./congty']">Công ty</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [class.chose]="step=='step3'" (click)="step='step3'"
+                        [routerLink]="['./congvieckhac']">Công việc khác từ công ty</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card card-body bg-white">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

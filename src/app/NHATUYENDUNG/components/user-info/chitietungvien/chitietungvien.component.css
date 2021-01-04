@@ -1,0 +1,325 @@
+/* .header{
+    min-height: 150px;
+}
+
+.head{
+    font-size: 16px;
+}
+.logo{
+    text-align: center;
+}
+
+.logo img{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-left: 10%;
+}
+
+.logo a{
+    color: tomato;
+}
+
+.head .icon{
+    margin-right: 10px;
+    font-size: 120%;
+}
+.tab-info{
+    margin-top: 30px;
+    
+}
+
+.tab-info .card-body{
+    padding-right: 20px;
+}
+.submit{
+    margin-left: 20%;
+}
+
+.submit .btn{
+    margin-right: 20px;
+    width: 100px;
+}
+
+.info a{
+    color:tomato
+}
+.info a:hover{
+    border-bottom: tomato solid 2px;
+}
+
+.item{
+    border-bottom: gray 1px solid;
+    margin-bottom: 5px;
+}
+
+
+  .itemXoa:hover {
+    transform: scale(1.2);
+  }
+  .itemXoa:hover i{
+    color: blue;
+  }
+
+  .thongtin h5{
+      font-size: 20px;
+  }
+
+  .upload{
+    font-weight:bold;
+    color:#28a745;
+    margin-left: 15px;
+    line-height: 36px;
+} */
+
+
+
+.iframe{padding-top:2px}.iframe #header-viewer{display:none}.iframe #cv-layout-viewer{padding-top:0;margin-top:0;margin-bottom:10px}.iframe #job-info{display:none}.iframe #cvo-document-root{margin:0 auto;float:none}.iframe #cv-layout-viewer{width:auto}.iframe #cvo-document{margin-bottom:30px}body#cv-viewer.iframe{background-color:transparent}.app-view #header-viewer{display:none}.app-view #cv-layout-viewer{margin-top:10px;margin-bottom:10px}
+#cvo-body {
+    background-color: #f5f5f5;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    font-family: robotocondensed,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    border: 1px solid #d4d4d4;
+}
+
+#cvo-profile-avatar {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+}
+
+#col-left {
+    /* background-color: #161616c2; */
+    background-color: #f9a045;
+    width: 30%;
+    color: #fff;
+    min-height: 1000px;
+    float: left;
+}
+#col-left #cvo-profile {
+    width: 100%;
+    padding: 0;
+    margin-top: 0;
+}
+#col-left .cvo-block {
+    width: 100%;
+    padding: 5px 12px;
+}
+#profile-title-wrapper {
+    text-align: center;
+    padding: 10px 3px;
+    background-color: var(--main);
+    /* background-color: #263238; */
+}
+#profile-contact-wraper {
+    width: 90%;
+    margin: 10px auto;
+    padding-top: 10px;
+}
+
+#profile-contact-wraper i{
+    margin: 5px;
+}
+#col-left .cvo-block {
+    width: 100%;
+    padding: 5px 12px;
+}
+#col-left .cvo-block-title {
+    margin: 0 0 10px;
+    font-size: 20px;
+    line-height: 32px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+#col-left .cvo-block-title span {
+    display: inline-block;
+    padding-right: 5px;
+    width: 100%;
+    vertical-align: middle;
+}
+#cvo-objective-objective {
+    width: 100%;
+}
+#col-left .cvo-block {
+    width: 100%;
+    padding: 5px 12px;
+}
+#col-left .cvo-block-title {
+    margin: 0 0 10px;
+    font-size: 20px;
+    line-height: 32px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+#col-left .cvo-block {
+    width: 100%;
+    padding: 5px 12px;
+}
+#col-left .cvo-block-title {
+    margin: 0 0 10px;
+    font-size: 20px;
+    line-height: 32px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+#interest-table {
+    padding-left: 20px;
+}
+ol, ul {
+    list-style: none;
+}
+#interest-table .row {
+    margin-bottom: 15px;
+    color: #fff;
+}
+#interest-table li {
+    width: 100%;
+    list-style-type: circle;
+}
+
+
+#col-right {
+    padding: 20px 5px 0;
+}
+#col-right {
+    background-color: #f5f5f5;
+    width: 70%;
+    float: right;
+    color: #444;
+    min-height: 560px;
+    padding-top: 1px;
+    text-align: justify;
+}
+
+#col-right .cvo-block-title {
+    margin: 0 0 10px;
+    font-size: 20px;
+    line-height: 32px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+#col-right .cvo-block-title span {
+    color: #263238;
+    display: inline-block;
+    padding-right: 5px;
+}
+#col-right .cvo-block-title span {
+    color: #263238;
+    display: inline-block;
+    padding-right: 5px;
+}
+#col-right .cvo-block {
+    width: 100%;
+    padding: 3px 15px;
+    
+}
+#col-right .cvo-block-title {
+    margin: 0 0 10px;
+    font-size: 20px;
+    line-height: 32px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+#col-right .cvo-block-title span {
+    color: #263238;
+    display: inline-block;
+    padding-right: 5px;
+}
+
+#col-right .row {
+    margin: 15px 0;
+}
+#col-right .cvo-block {
+    width: 100%;
+    padding: 3px 15px;
+}
+#col-right .cvo-block-title {
+    margin: 0 0 10px;
+    font-size: 20px;
+    line-height: 32px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+#col-right .cvo-block-title span {
+    color: #263238;
+    display: inline-block;
+    padding-right: 5px;
+}
+#col-right .cvo-block-title i.fa {
+    background-color: #263238;
+    color: #fff;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    padding-top: 10px;
+    margin-right: 5px;
+}
+.fa {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+* {
+    
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#col-right .cvo-block-title span:nth-child(2) {
+    max-width: 440px;
+    vertical-align: middle;
+}
+#col-right .cvo-block-title span {
+    color: #263238;
+    display: inline-block;
+    padding-right: 5px;
+}
+.row-title {
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.education-school, .cvo-experience-company, .cvo-activity-organization {
+    font-weight: 600;
+    font-size: 17px;
+}
+.cvo-education-title, .cvo-experience-position, .cvo-activity-position {
+    font-weight: 700;
+    font-style: italic;
+}
+
+.action-list {
+    margin-top: 10px;
+}
+.action-list .action {
+    display: block;
+    margin-bottom: 5px;
+    border-top: 1px dashed #dfdfdf;
+    padding: 7px 0;
+    position: relative;
+}
+a {
+    color: #000;
+}
+.fa, .fas {
+    font-weight: 900;
+}
+.fa, .far, .fas {
+    font-family: "Font Awesome 5 Free";
+}

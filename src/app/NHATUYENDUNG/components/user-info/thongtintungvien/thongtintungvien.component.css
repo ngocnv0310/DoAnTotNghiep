@@ -1,0 +1,75 @@
+.header{
+    min-height: 150px;
+}
+.logo{
+    text-align: center;
+}
+
+.logo img{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-left: 10%;
+}
+.text-muted{
+    font-size: 16px;
+}
+.text-p{
+    font-size: 16px;
+    color: black;
+}
+.logo a{
+    color: tomato;
+}
+
+.head .icon{
+    margin-right: 10px;
+    font-size: 120%;
+}
+.tab-info{
+    margin-top: 30px;
+    
+}
+
+.tab-info .card-body{
+    padding-right: 20px;
+}
+.submit{
+    margin-left: 20%;
+}
+
+.submit .btn{
+    margin-right: 20px;
+    width: 100px;
+}
+
+.info a{
+    color:tomato
+}
+.info a:hover{
+    border-bottom: tomato solid 2px;
+}
+
+.item{
+    border-bottom: gray 1px solid;
+    margin-bottom: 5px;
+}
+
+
+  .itemXoa:hover {
+    transform: scale(1.2);
+  }
+  .itemXoa:hover i{
+    color: blue;
+  }
+
+  .thongtin h5{
+      font-size: 20px;
+  }
+
+  .upload{
+    font-weight:bold;
+    color:#28a745;
+    margin-left: 15px;
+    line-height: 36px;
+}

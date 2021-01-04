@@ -1,0 +1,21 @@
+
+.dieuhuong{
+  background-image: url('./../../../../assets/image/header-main.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 120px;
+  color: white;
+  padding-top: 30px;
+}
+.dieuhuong li h1{
+    font-size: 50px;
+    min-width: 250px;
+}
+.dieuhuong li a h2{
+    font-size: 20px;
+    color: white;
+}
+
+.chose{
+    border-bottom: #ecf9f2 2px solid;
+}

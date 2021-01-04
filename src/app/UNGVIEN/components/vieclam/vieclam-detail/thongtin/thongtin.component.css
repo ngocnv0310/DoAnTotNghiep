@@ -1,0 +1,25 @@
+.box{
+    background-color: #f7fdff;
+    border: rgba(0, 185, 242, 0.5) 1px solid;
+    border-radius: 5px;
+}
+.item{
+    margin-bottom: 20px;
+}
+
+.item i{
+    font-size: 25px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.item label{
+    font-size: 12px;
+    margin-bottom: 0px;
+}
+
+.nganh{
+    background-image: url(../../../../../../assets/image/nganhnghe.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}

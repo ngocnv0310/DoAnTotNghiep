@@ -1,0 +1,178 @@
+<!-- phần nội dung đầu -->
+<div class="card header">
+    <div class="card-body">
+        <div class="row">
+
+            <div class="col-2 logo">
+                <img [src]="createImgPath(user.hinhanh)" alt="logo-user">
+            </div>
+            <div class="col-6">
+                <div class="head">
+                    <div *ngIf="user.ho !=null || user.ten != null ,else nhaphoten">
+                        <h1 style="color: #3DC089; font-size: 32px; font-weight: bold;">{{user.ho}} {{user.ten}}</h1>
+                    </div>
+                    <ng-template #nhaphoten>
+                        <h1>Nhập họ tên</h1>
+                    </ng-template>
+                    <div>
+                        <span style="color: #555555; font-size: 16px; font-weight: bold;">{{ut.chucdanh}} / {{ut.capbac}}</span>
+                    </div>
+                    <div>
+                        <span style="color: #555555; font-size: 16px;">{{ut.tencongty}}</span>
+                    </div>
+                    <div>
+                        <span style="color: #555555; font-size: 16px;">{{user.ngaysinh |date:'dd/MM/yyyy'}}</span>
+                    </div>
+                    <div>
+                        <span style="color: #555555; font-size: 16px;">{{user.gioitinh==1?'nam':'nu'}}</span>
+                    </div>
+                    <br>
+                    <p style="color: #F99D41;"><i style="color: #F99D41;" class="fa fa-link" aria-hidden="true"></i>
+                        {{user.urlCv| catchuoi:17}}</p>
+                </div>
+            </div>
+            <div class="col-4 position-relative">
+                <button class="btn btn-outline-warning" 
+                style="position: absolute; top:50%;left:60%; width: 100px;"
+                (click)="lienhe=!lienhe"
+                >Liên hệ</button>
+                <div *ngIf="lienhe" class="float-right text-right" style="font-size: 18px;color: tomato;">
+                    <small><i class="fa fa-envelope" aria-hidden="true"></i>
+                        adad@gmail.com</small><br>
+                    <small><i class="fa fa-phone-square" aria-hidden="true"></i>
+                        0346006260</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Ung tuyen -->
+<div class="card tab-info">
+    <div class="card-header" style="margin-top: 15px;">
+        <h3 style="color: #111111; font-size: 32px;">ỨNG TUYỂN</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-4">
+                <span class="text-muted">Công việc ứng tuyển</span>
+                <p class="text-p"> {{ut.tieude}}</p>
+            </div>
+            <div class="col-4">
+                <span class="text-muted">Chức danh/cấp bậc ứng tuyển</span>
+                <p>{{ut.chucdanh}}/{{ut.capbac}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <span class="text-muted">Kinh nghiệm làm việc</span>
+                <p> {{user.kinhnghiem}} năm</p>
+            </div>
+            <div class="col-4">
+                <span class="text-muted">Mức lương mong muốn</span>
+                <p *ngIf="user.luong,else noluong"> {{user.luong | number}}</p>
+                <ng-template #noluong>
+                    <p>Thương lượng</p>
+                </ng-template>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <span class="text-muted">Công ty hiện tại</span>
+                <p> {{ut.tencongty}}</p>
+            </div>
+            <div class="col-4">
+                <span class="text-muted">Vị trí hiện tại</span>
+                <p> {{ut.chucdanh}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <span class="text-muted">Địa điểm làm việc</span>
+                <p> {{user.diachi}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!showall,else then" style="text-align: center; margin-top: 20px;">
+    <a [routerLink]="['./']" style="color: #F48120!important;" (click)="showall=true">Xem thêm >>></a>
+</div>
+<ng-template #then>
+    <!-- THÔNG TIN CHUNG -->
+    <div class="card tab-info">
+        <div class="card-header">
+            <h3 style="font-size: 32px; color: #111111; margin-top: 15px;">THÔNG TIN CHUNG</h3>
+        </div>
+        <div class="card-body">
+            <p style="color: #555555; font-size: 16px;">Giới thiệu bản thân và miêu tả mục tiêu nghề nghiệp của bạn</p>
+            <p style="color: #111111; font-size: 16px;">{{user.mota}}</p>
+        </div>
+    </div>
+    <!-- HỌC VẤN VÀ BẰNG CẤP -->
+    <div class="card tab-info">
+        <div class="card-header">
+            <h3 style="font-size: 32px; color: #111111; margin-top: 15px;">HỌC VẤN VÀ BẰNG CẤP</h3>
+        </div>
+        <div class="card-body">
+            <div class="item" *ngFor="let item of bangcaps">
+                <div class="thongtin">
+                    <p style="font-size: 16px;">
+                        <label>{{item.chuyennganh}}</label><br>
+                        <label>{{item.tentruong}}</label><br>
+                        <label>Hệ: {{item.tentrinhdo}}/{{item.tenbangcap}}</label><br>
+                        <label>Thời gian ({{item.ngaybatdau|date:'MM/yyyy'}} -
+                            {{item.ngayketthuc|date:'MM/yyyy'}})</label><br>
+                        <label>Ghi chú: {{item.ghichu}} </label>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- NGOẠI NGỮ -->
+    <div class="card tab-info">
+        <div class="card-header">
+            <h3 style="font-size: 32px; color: #111111; margin-top: 15px;">NGOẠI NGỮ</h3>
+        </div>
+        <div class="card-body">
+            <div class="item thongtin" *ngFor="let item of ngoaingus">
+
+                <h5 style="font-size: 16px;">{{item.tenngoaingu}}</h5>
+                <p *ngIf="!item.coban;else coban">
+                    <span style="font-size: 16px;" *ngIf="item.nghe">Nge </span>
+                    <span style="font-size: 16px;" *ngIf="item.noi">Nói </span>
+                    <span style="font-size: 16px;" *ngIf="item.doc">Đọc </span>
+                    <span style="font-size: 16px;" *ngIf="item.viet">Viết </span>
+                </p>
+                <ng-template #coban>
+                    <p style="font-size: 16px;">Cơ bản</p>
+                </ng-template>
+                <p style="font-size: 16px;">Ghi chú: {{item.ghichu}}</p>
+
+            </div>
+        </div>
+    </div>
+    <!-- KINHNGHIEM LAM VIỆC -->
+    <div class="card tab-info">
+        <div class="card-header">
+            <h3 style="font-size: 32px; color: #111111; margin-top: 15px;">KINH NGHIỆM LÀM VIỆC</h3>
+        </div>
+        <div class="card-body">
+            <div class="item" *ngFor="let item of kinhnghiems">
+                <div class="thongtin">
+                    <h5 style="font-size: 16px;">{{item.tencongty}}</h5>
+                    <p style="font-size: 16px;">
+                        <label>{{item.chucdanh}} / {{item.chucvu}}</label><br>
+                        <label>Thời gian ({{item.thoigianbatdau | date: 'MM/yyyy'}} -
+                            {{item.thoigianketthuc  | date: 'MM/yyyy'}})</label><br>
+                        <label>{{item.ghichu}}</label>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a [routerLink]="['./']" style="color: #F48120!important;" (click)="showall=false">Ẩn nội dung >>></a>
+    </div>
+</ng-template>

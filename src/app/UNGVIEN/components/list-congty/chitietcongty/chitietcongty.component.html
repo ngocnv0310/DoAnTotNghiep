@@ -1,0 +1,111 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark  fixed-top">
+    <div class="container">
+        <ul class="navbar-nav">
+            <li class="nav-item scroll" >
+                <a class="nav-link" (click)="scrollToElement(home)"><i class="fa fa-home" aria-hidden="true"></i> Đầu trang</a>
+            </li>
+            <li class="nav-item scroll" >
+                <a class="nav-link" (click)="scrollToElement(job)"><i class="fa fa-briefcase" aria-hidden="true"></i> Công việc</a>
+            </li>
+            <li class="nav-item scroll" >
+                <a class="nav-link" (click)="scrollToElement(gioithieu)"><i class="fa fa-info-circle" aria-hidden="true"></i>
+                 Giới thiệu</a>
+            </li>
+            <li class="nav-item scroll" >
+                <a class="nav-link" (click)="scrollToElement(diadiemlamviec)"><i class="fa fa-building" aria-hidden="true"></i>
+                 Văn phòng</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="main" style="margin-top: 50px;margin-bottom: 30px;" #home>
+    <div class="banner position-relative">
+        <img [src]="createImgPath(ntd.bannercongty)" class="w-100" style="max-height: 400px;" alt="">
+    </div>
+    <div class="tieude bg-white" style="border-top: tomato 2px solid;border-bottom: tomato 2px solid">
+        <div class="container">
+            <div class="row" style="margin: 10px; min-height: 100px;margin: 0px 0px -10px;                                                                                                                     ">
+                <div class="col-2 text-center">
+                    <img [src]="createImgPath(ntd.logo)" class="logo" style="max-width: 100%;max-height: 90px; padding: 5px;" alt="">
+                </div>
+                <div class="col-10" style="padding:5px ; font-size: 16px; margin-bottom: 5px;">
+                    <h1 style="font-size: 24px; font-weight: 500; text-transform: uppercase;margin-bottom: inherit;">{{ntd.tencongty}}</h1>
+                    <span class="d-block"><span class="hide">{{ntd.diachi}}</span> | {{ntd.website}}</span>
+                    <span>SDT: <label class="text-main">{{ntd.sdt}}</label></span><br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br #job>
+    <section *ngIf="listTin.length > 0">
+        <div >
+            <div class="container ">
+                <h2 class="tieude text-center"> Danh sách công việc từ công ty  </h2>
+                <hr>
+                <div class="card">
+                    <div class="card-body">
+                        <div *ngFor="let item of listTin">
+                            <div class="item row">
+                                <div class="job col-8">
+                                    <h3 style="font-size: 20px;text-transform: uppercase;">{{item.tieude}} </h3>
+                                    <span><i class="fa fa-briefcase" aria-hidden="true"></i> {{item.capbac}} </span>
+                                    <span><i class="fa fa-map-marker" aria-hidden="true"></i> {{item.tenthanhpho}}
+                                    </span>
+                                    <span><i class="fa fa-calendar" aria-hidden="true"></i>
+                                        {{item.ngayhethan | date:'dd/MM/yyyy'}} </span>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <a [routerLink]="['/ungvien/vieclam/', item.idTintuyendung]" class="btn btn-outline-secondary">Xem chi tiết</a>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+         <div #gioithieu></div>
+   
+    <br>
+    <section>
+        
+        <div class="container">
+            <h2 class="tieude text-center">Giới thiệu</h2>
+            <hr>
+            <div class="card">
+                <div class="card-body row" style="height: 300px;padding: 5px;">
+                    <div class="text col-4">
+                        <h3 style="color: var(--second);font-size: 25px;margin: 5px 0 -10px 10px;">GIỚI THIỆU CÔNG TY</h3>
+                        <hr>
+                        <div class="text-scoll">
+                            {{ntd.gioithieucongty}}
+                        </div>
+                    </div>
+                    <div class="hinhanh col-8">
+                        <img [src]="createImgPath(ntd.hinhanh)" width="90%" alt="">
+                    </div>
+                </div>
+                <div #diadiemlamviec></div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div *ngIf="sortedArray.length > 0">
+            <div class="container">
+                <h1 class="tieude text-center">Văn phòng làm việc</h1>
+                <hr>
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" *ngFor="let item of sortedArray">
+                            <span><i class="fa fa-map-marker" aria-hidden="true"></i> {{item.diachi}}, </span>
+                            <span> {{item.tenthanhpho}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<app-footer-ntd></app-footer-ntd>

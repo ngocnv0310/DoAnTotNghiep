@@ -1,0 +1,35 @@
+<div class="dieuhuong">
+    <div class="container">
+        <ul class="nav">
+            <li class="nav-item">
+                <h1 class="nav-link"> Thông tin</h1>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['./cong-ty']" routerLinkActive="router-link-active" >
+                    <h2 [class.chose]="step=='step1'" (click)="step='step1'">THÔNG TIN CÔNG TY</h2>
+                </a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" [routerLink]="['./tuyen-dung']" routerLinkActive="router-link-active">
+                    <h2 [class.chose]="step=='step2'" (click)="step='step2'">TUYỂN DỤNG</h2>
+                </a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" [routerLink]="['./ung-vien-da-luu']" routerLinkActive="router-link-active" >
+                    <h2 [class.chose]="step=='step3'" (click)="step='step3'">TÌM KIẾM ỨNG VIÊN</h2>
+                </a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" [routerLink]="['./ung-vien-da-ung-tuyen']" routerLinkActive="router-link-active" >
+                    <h2 [class.chose]="step=='step4'" (click)="step='step4'">DANH SÁCH ỨNG TUYỂN</h2>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="main">
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</div>

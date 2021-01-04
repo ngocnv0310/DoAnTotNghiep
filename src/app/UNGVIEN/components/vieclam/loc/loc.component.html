@@ -1,0 +1,47 @@
+<div class="card">
+    <div class="card-header">
+        <h2>Lọc dữ liệu</h2>
+    </div>
+    <div class="card-body">
+        <div class="form-group">
+            <label>Thành phố</label>
+            <select class="form-control" [(ngModel)]="loc.thanhpho" (change)=onSearch()>
+                <option [value]=0>Tất cả</option>
+                <option [value]="item.idThanhpho" *ngFor="let item of listThanhpho">{{item.tenthanhpho}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Ngành nghề</label>
+            <select class="form-control" [(ngModel)]="loc.nganhnghe" (change)=onSearch()>
+                <option [value]=0>Tất cả</option>
+                <option [value]="item.idNganh" *ngFor="let item of listNganh">{{item.tennganh}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Mức lương</label>
+            <select class="form-control" [(ngModel)]="loc.minluong" (change)=onSearch()>
+                <option [value]=0>Tất cả</option>
+                <option [value]="item.value" *ngFor="let item of listLuong">Từ {{item.value|number}} vnđ</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Cấp bậc</label>
+            <select class="form-control" [(ngModel)]="loc.capbac" (change)=onSearch()>
+                <option [value]=null>Tất cả</option>
+                <option value="2">mức 2</option>
+                <option value="3">mức 3</option>
+                <option value="4">mức 4</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Loại hình công việc</label>
+            <select class="form-control" [(ngModel)]="loc.loaicongviec" (change)=onSearch()>
+                <option [value]=0>Tất cả</option>
+                <option [value]="item.idLoaicongviec" *ngFor="let item of listLoaicongviec">{{item.tenloaicongviec}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        <a class="btn btn-outline-secondary" (click)="onReset()">Xóa bộ lọc</a>
+    </div>
+</div>

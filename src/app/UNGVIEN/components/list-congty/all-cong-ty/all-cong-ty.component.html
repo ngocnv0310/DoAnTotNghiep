@@ -1,0 +1,70 @@
+<div class="header">
+  <div class="container" style="padding-top: 20px;">
+    <h3>CÔNG TY</h3>
+    <p class="cap">Tìm hiểu văn hoá công ty và chọn cho bạn nơi làm việc phù hợp nhất.</p>
+    <div class="row">
+      <select class="col-3 form-control input" [(ngModel)]="nganh" #nganhs>
+        <option value=0>Tất cả ngành nghề</option>
+        <option [value]="item.idNganh" *ngFor="let item of lstnganh">{{item.tennganh}}</option>
+      </select>
+      <select class="col-3 form-control input" [(ngModel)]="khuvuc" #khuvucs>
+        <option value=0>Tất cả khu vực</option>
+        <option [value]="item.idThanhpho" *ngFor="let item of lstkhuvuc">{{item.tenthanhpho}}</option>
+      </select>
+      <input [(ngModel)]="text" #textQuery type="text" placeholder="Tên công ty" class="col-3 form-control input">
+      <button class="btn btn-main" (click)="searchCongty(nganhs.value,khuvucs.value,textQuery.value)">Tìm kiếm</button>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="container">
+    <div class="row slideshow">
+      <div class="col-4 item" style="margin-bottom: 30px; position: relative;" *ngFor="let item of nhatuyendung"
+        (click)="Xemchitiet(item)">
+        <div class="ntdmoi">
+          <span *ngIf="item.tinmoi">Công ty mới</span>
+        </div>
+        <div class="card">
+          <div class="banner" style="background-image: #F1F1F1;">
+            <img class="card-img-top" style="max-width: 100%;height: 200px;" [src]="createImgPath(item.bannercongty)"
+              alt="Card image cap">
+          </div>
+          <div class="card-body hidetext">
+            <div class="row">
+              <div class="col-9">
+                <p class="ten-congty">{{item.tencongty}}</p>
+                <p class="card-text ">{{item.gioithieucongty}}</p>
+              </div>
+              <div class="col-3 text-right" style="font-size: 16px;">
+                <i class="far fa-eye"></i>
+                <span class="d-block"> {{item.luotxem}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phantrang">
+      <ul class="pagination pagination-square justify-content-center">
+        <li [ngClass]="{'disabled': pageNumber==1}" class="page-item"><a class="page-link"
+            (click)="chuyentrang(1)">&lt;&lt;</a></li>
+        <li [ngClass]="{'disabled': pageNumber==1}" class="page-item"><a class="page-link"
+            (click)="chuyentrang(pageNumber-1)">&lt;</a></li>
+        <li *ngFor="let item of totalPage|numToArr" [ngClass]="{'active': (item+1)==pageNumber}"
+          (click)=chuyentrang(item+1) class="page-item"><a class="page-link">{{item+1}}</a></li>
+        <li [ngClass]="{'disabled': pageNumber==totalPage}" class="page-item" (click)="chuyentrang(pageNumber+1)"><a
+            class="page-link">&gt;</a></li>
+        <li [ngClass]="{'disabled': pageNumber==totalPage}" class="page-item" (click)="chuyentrang(totalPage)"><a
+            class="page-link">&gt;&gt;</a></li>
+      </ul>
+    </div>
+    <!-- <div class="phantrang" style="text-align:center">
+            <a class="click btn" [routerLink]="['./']" (click)="first()"> << </a>
+            <a class="click btn" [routerLink]="['./']" (click)="pre()"> < </a>
+            <a class="click btn" [routerLink]="['./']" (click)="topage(item)" *ngFor="let item of page">{{item}}</a>
+            <a class="click btn" [routerLink]="['./']" (click) = "next()"> > </a>
+            <a class="click btn" [routerLink]="['./']" (click) = "last()"> >> </a>
+        </div> -->
+  </div>
+</div>

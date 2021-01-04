@@ -1,0 +1,32 @@
+body.has-app-shell .main-wrapper .container {
+    width: auto;
+}
+body.has-app-shell .main-content {
+    width: 100%;
+    padding: 0 12.5%;
+}
+
+.box-lg {
+    padding: 48px;
+}
+.box {
+    background: #fff;
+    margin-bottom: 15px;
+    border: 0;
+    box-shadow: 0 0.5px 0 rgba(0,0,0,.1);
+}
+.page-title {
+    color: #f7941d;
+    text-transform: capitalize;
+    font-size: 30px;
+    margin-bottom: 15px;
+    display: block;
+}
+.h2, h2 {
+    font-size: 25px;
+    font-weight: 300;
+}
+h1, h2, h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

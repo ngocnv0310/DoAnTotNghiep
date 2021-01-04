@@ -1,0 +1,62 @@
+<div class="card tab-info">
+    <div class="card-header bg-white" style="padding-bottom: 0px; padding-top: 20px;">
+        <div class="row">
+            <div class="col-6">
+                <h1 style="font-size: 32px;padding-top: 10px; margin-bottom: 20px;">TUYỂN DỤNG</h1>
+            </div>
+            <!-- <div class="col-6">
+                <label class="col-4" style="font-size: 14px;color: #555555; padding-left: 55px;padding-top: 20px;"
+              >Vị trí ứng tuyển </label>
+                <select>
+                    <option value="1" aria-placeholder="Tất cả vị trí">Tất cả vị trí</option>
+                  </select>
+            </div> -->
+        </div>
+    </div>
+    <div class="card-body" *ngIf="tintuyendung.length > 0,else tintrong">
+        <div class="item" *ngFor="let item of tintuyendung">
+            <div class="row">
+                <div class="col-6">
+                    <h3 style="color: #3DC089; font-size: 20px; font-weight: 500;">{{item.tieude}}
+                        <span *ngIf="item.thongbao==true" class="badge badge-danger">mới</span>
+                    </h3>
+                    <span *ngIf="item.thuongluong,else then"> {{item.chucdanh}} | {{item.tenthanhpho}} | <span style="color: #F48120;">$
+                        {{item.thuongluong?'Thương lượng':''}}</span> </span>
+                    <ng-template #then><span> {{item.chucdanh}} | {{item.tenthanhpho}} |$ Từ {{item.minluong|number}} -
+                        {{item.maxluong|number}}</span></ng-template>    
+                </div>
+                <div class="col-4">
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <h4>Ngày hết hạn</h4>
+                            <span style="color: #555555;" *ngIf="item.ngayhethan>today"> {{item.ngayhethan|date:'dd/MM/yyyy'}} </span>
+                            <span style="color: #555555;" *ngIf="item.ngayhethan<today"> Đã hết hạn </span>
+                        </div>
+                        <div class="col-4">
+                            <h4>Ngày đăng</h4>
+                            <span> {{item.ngaydang|date:'dd/MM/yyyy'}} </span>
+                        </div>
+                        <div class="col-4">
+                            <h4>Số lượng ứng tuyển</h4>
+                            <span>{{item.soluongungtuyen}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2 text-right">
+                    <button class="btn btn-outline-main" [routerLink]="['/nhatuyendung/home/thong-tin/chi-tiet-ung-tuyen/',item.idTintuyendung]" routerLinkActive="router-link-active">Xem chi tiết</button>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <ng-template #tintrong>
+        <div class="card-body">
+            <div class="empty text-center">
+                <img src="../../../../../assets/image/Mask Group 26.png" alt="">
+                <span class="text-muted d-block" style="font-size:16px">Vị trí ứng tuyển trống</span>
+            </div>
+        </div>
+    </ng-template>
+
+
+</div>

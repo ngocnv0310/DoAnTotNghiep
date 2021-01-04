@@ -1,0 +1,44 @@
+<div *ngIf="listTintuyendungs.length > 0,else tintrong">
+    <div *ngFor="let item of listTintuyendungs">
+        <div class="work-item">
+            <div class="row">
+                <div class="header col-2 text-center">
+                    <img class="logo" style="padding: 5px;" [src]="createImgPath(item.logo)" alt="">
+                </div>
+                <div class="info col-7" style="    margin-left: -25px;">
+                    <div class="tieude">
+                        <a [routerLink]="['./']" (click)="Xemtin(item)">
+                            <span>{{item.tieude|ellip|uppercase}} <span class="badge badge-danger hot">Mới</span></span>
+                        </a>
+    
+                    </div>
+                    <span>{{item.tencongty}}</span><br>
+                    <span>{{item.idDiadiemlamviecNavigation.diachi}}/{{item.tenthanhpho}}</span><br>
+                    <span>Hết hạn:{{item.ngayhethan|date:'dd/MM/yyyy'}}</span><br>
+    
+                </div>
+                <div class="header col-3 position-relative">
+                    <div class="luong">
+                        <div *ngIf="item.thuongluong,else luong">
+                            <span style="color: var(--main);">Thương lượng</span>
+                        </div>
+                        <ng-template #luong>
+                            <span style="color: var(--main);" *ngIf="item.minluong">Từ {{item.minluong|number}}
+                            </span>
+                            <span style="color: var(--main);" *ngIf="item.maxluong"> Đến
+                                {{item.maxluong|number}} </span>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #tintrong>
+    <div class="card-body">
+        <div class="empty text-center">
+            <img src="../../../../../assets/image/Mask Group 26.png" alt="">
+            <span class="text-muted d-block" style="font-size:16px">Không còn công việc khác từ công ty bạn đang xem</span>
+        </div>
+    </div>
+</ng-template>

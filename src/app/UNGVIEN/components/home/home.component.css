@@ -1,0 +1,206 @@
+.box {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+  text-align: left;
+  width: 60%;
+}
+
+.box-search {
+  background-color: bisque;
+  padding: 10px
+}
+
+.box-search input {
+  width: 80%;
+  float: left;
+}
+
+.box-search button {
+  width: 19%;
+  float: left;
+}
+
+.list-job {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 15%;
+  width: 70%;
+}
+
+.conty {
+  width: 80%;
+}
+
+.banner {
+  width: 70%;
+  margin: auto;
+}
+
+.block-ellipsis {
+  display: block;
+  display: -webkit-box;
+  max-width: 100%;
+  height: 40px;
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 1;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.boder-search {
+  width: 100%;
+  border-radius: 5px;
+  padding: 20px;
+  height: 90px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.boder-search button {
+  width: 150px;
+  background-color: var(--main);
+  height: 50px;
+}
+
+.boder-search input {
+  border: none;
+  outline: none;
+  height: 50px;
+}
+
+.text-header h1 {
+  color: white;
+  font-size: 40px;
+  letter-spacing: 1px;
+  word-spacing: 3px;
+}
+
+section {
+  padding-top: 50px;
+}
+
+section:last-child {
+  margin-bottom: 50px;
+}
+
+.logo img {
+  padding: 10px;
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #00000038;
+}
+
+.viewbanner {
+  z-index: 10;
+  top: 80%;
+  left: 75%;
+  width: 225px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+/* The dots/bullets/indicators */
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 5px 15px;
+  border: solid 1px #ccc;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color .6s ease;
+}
+
+.active, .dot:hover {
+  background-color: var(--second);
+}
+
+.carousel-item {
+  background-color: #f9f9f9;
+}
+
+.noidung {
+  background-color: #f9f9f9!important;
+  padding: 20px 10px;
+}
+
+.hidetext p {
+  white-space: nowrap;
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-dot {
+  color: gray;
+  background: none;
+  border: solid 1px gray;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+  margin: 0 10px;
+}
+
+.btn-dot i {
+  font-size: 90%;
+}
+
+.item-vieclam {
+  margin: 10px;
+  margin-left: 20px;
+  padding: 5px 15px;
+  border-bottom: solid 2px #a5a3a3;
+}
+
+.item-vieclam img {
+  max-width: 60px;
+}
+
+.ellipsis {
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.ellipsis1 {
+  width: 80%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.item-ntd {
+  padding: 5px 15px;
+}
+
+.item-ntd img {
+  max-width: 170px;
+  max-height: 100px;
+  box-shadow: 0 0 6px #4e4b4b7a;
+}
+
+.text-head {
+  font-size: 32px;
+  margin: 0 0 20px;
+}
+
+.icon-hot {
+  background-color: #F86252;
+  width: 60px;
+  height: 30px;
+  padding: 3px;
+  margin-top: 10px;
+}
+
+.tencongty{
+  margin-top: 20px;
+}

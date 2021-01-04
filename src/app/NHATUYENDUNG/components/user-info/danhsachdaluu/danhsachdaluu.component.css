@@ -1,0 +1,154 @@
+.work-item {
+    width: 100%;
+    padding: 5px;
+    border-bottom: #ccc 1px solid;
+}
+
+.logo {
+    width: 90%;
+    outline: white solid 5px;
+}
+
+.work-item .info {
+    min-height: 100px;
+}
+
+.list-job {
+    background-color: white;
+}
+
+.icon i {
+    color: gray;
+}
+
+.icon i:hover {
+    transform: scale(1.1);
+    color: var(--main);
+}
+
+.info{
+    font-family: Helvetica;
+    
+}
+
+.info a{
+    font-size: 20px;
+    margin: 10px 0 5px 0px;
+    color: #111111;
+}
+
+.icon i:active {
+    transform: scale(1.2);
+    color: blue
+}
+
+.info a{
+    font-weight: 400;
+    display: block;
+}
+
+.info a:hover{
+    text-decoration: none;
+}
+
+  
+  .has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+.confim{
+    padding: 0px 20px 20px 0;
+
+}
+
+.badge{
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 55%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    /* white-space: nowrap; */
+    /* vertical-align: baseline; */
+    border-radius: 0;
+    vertical-align: text-top;
+}
+
+.save{
+    position: absolute;
+    font-size: 20px;
+    right: 0;
+    bottom: 10px;
+}
+.luong{
+    float: right;
+    text-align: right;
+}
+
+.dropdown-item:active{
+    background-color: var(--second);
+}
+
+.edit {
+    padding-top: 10px;
+    font-size: 20px;
+}
+.card-header{
+    background-color: white;
+}
+.edit a {
+    margin-right: 15px;
+    color: tomato;
+}
+.box h6{
+    font-size: 16px;
+}
+.col-2{
+    font-size: 14px;
+    color: #B3B3B3;
+    padding-top: 10px;
+}
+.col-2 text{
+    font-size: 16px;
+}
+.col-4{
+    font-size: 14px;
+    color: #B3B3B3;
+}
+.tab-info h1{
+    font-size: 32px;
+    padding-top: 30px;
+}
+.tab-info h4{
+    font-size: 16px;
+    padding-top: 30px;
+}
+.tab-info{
+    margin-top: 15px;
+    
+}
+
+.avatar{
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+
+.border-bottom{
+    padding-bottom: 2px;
+    border-bottom: 5px solid #cccc !important;
+}
+

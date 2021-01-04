@@ -1,0 +1,92 @@
+<div class="card" style="margin-bottom: 50px;">
+    <div class="card-header bg-white" style="padding-top: 30px;">
+        <div class="row ml-1">
+            <h3 style="font-size: 35px;text-transform: uppercase;">Thông báo việc làm</h3>
+            <div class="ml-auto mr-3">
+                <a class="bg-white taothongbao" style="color: var(--second);" data-toggle="modal"
+                    data-target="#exampleModal">
+                    <h4> <i class="fa fa-plus-circle" aria-hidden="true"></i> Tạo Thông báo</h4>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body" style="padding: 10px;" *ngIf="listCVungvien.length > 0,else tintrong">
+        <div class="item-cv border-bottom" *ngFor="let item of listCVungvien,let i = index">
+            <!-- <div class="float-right">
+                <a class="float-right itemXoa"><i class="fa fa-trash-o" data-toggle="tooltip" data-placement="top"
+                        (click)="XoaCongviecmongmuon(item)" title="Xóa"></i></a><br>
+                <a class="float-right itemXoa"><i class="fa pencil-square-o" data-toggle="tooltip" data-placement="top"
+                        (click)="SuaCongviec(item)" title="update"></i></a>
+            </div> -->
+
+            <div class="row" style="padding: 10px 0 5px;">
+                <div class="col-6">
+                    <div class="tenvieclam">
+                        <span>
+                            {{item.tenvieclam}}
+                        </span>
+                    </div>
+                    <span>{{CustomString(item.thanhpho,'tenthanhpho')}}</span> -
+                    <span>{{CustomString(item.nganhnghe,'tennganh')}} </span> -
+                    <span> {{item.capbac}}</span> -
+                    <span> {{item.luong | number}} <span *ngIf="item.thuongluong && item.luong>0">/</span>
+                        {{item.thuongluong==true?'Có thể thương lượng':''}}</span> -
+                    <span>{{item.tenloaicongviec}}</span>
+
+                </div>
+                <div class="col-6 row" style="padding: 0;">
+                    <div class="col-3 text-center">
+                        <span class="text-muted d-block">Nhận</span>
+                        <span>Hàng tuần</span>
+                    </div>
+                    <div class="col-3  text-center">
+                        <span class="text-muted d-block">Ngày cập nhật</span>
+                        <span>20/11/2020</span>
+                    </div>
+                    <div class="col-6" style="padding: 0; padding-top: 5px;">
+                        <button class="btn btn-outline-main" (click)="Xemviec(item)">Xem việc phù hợp</button>
+                        <div class="float-right" style="padding-top: 10px;">
+                            <a class="item-click"><span class="text-main" ><i class="fa fa-pencil"></i> Sửa</span></a>
+                            <a class="item-click"><span class="text-main" data-toggle="tooltip" data-placement="top"
+                                (click)="XoaCongviecmongmuon(item)" title="Xóa"><i class="fa fa-trash"></i> Xóa</span></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #tintrong>
+        <div class="card-body">
+            <div class="empty text-center">
+                <img src="../../../../../assets/image/Mask Group 26.png" alt="">
+                <span class="text-muted d-block" style="font-size:16px">Bạn chưa có công việc mong muốn</span>
+            </div>
+        </div>
+    </ng-template>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" style="width: 50%;max-width: none;" role="document">
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-body"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h1 class="border-bottom">THÔNG BÁO TẠO VIỆC LÀM</h1>
+
+
+                    <app-taothongbao (luuData)="onData($event)"></app-taothongbao>
+                    <div class="chuabutton float-right" style="display: none;">
+                        <button id="dong" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

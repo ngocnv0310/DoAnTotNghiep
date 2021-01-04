@@ -1,0 +1,772 @@
+<!-- phần nội dung đầu -->
+<div class="card header">
+    <div class="card-body">
+        <div class="row">
+
+            <div class="col-3 logo">
+
+                <img *ngIf="user.sociallogin" class="card-img-top img-responsive photo" src="{{ user.hinhanh }}">
+                <img *ngIf="!user.sociallogin" [src]="createImgPath(user.hinhanh)" alt="logo-user">
+                <br>
+                <br>
+                <p><a *ngIf="!user.sociallogin" (click)="file.click()">Cập nhật hình ảnh</a></p>
+                <div class="row" style="margin-bottom:15px;">
+                    <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)"
+                        accept="image/x-png,image/gif,image/jpeg" style="display:none;">
+                </div>
+            </div>
+            <div class="col-9">
+                <a class="float-right itemXoa"><i class="fa fa-pencil"
+                        (click)="scrollToElement(thongtin);editthongtin=!editthongtin"></i></a>
+                <div class="head">
+                    <div *ngIf="user.ho !=null || user.ten != null ,else nhaphoten">
+                        <h1>{{user.ho}} {{user.ten}}</h1>
+                        <span class=" text-muted">Chức danh cấp bậc: <label
+                                *ngIf="chucdanh.length > 0">{{chucdanh}}</label> </span><span
+                            *ngIf="chucdanh.length == 0" class="text-main">Thêm chức/danh cấp bậc</span> <br>
+                        <span class=" text-muted">Số năm kinh nghiệm: <label
+                                *ngIf="namkinhnghiem.length > 0">{{namkinhnghiem}}</label> </span><span
+                            *ngIf="namkinhnghiem.length == 0" class="text-main">Thêm số năm kinh nghiệm</span> <br>
+                        <span class=" text-muted">Công ty gần đây nhất: <label
+                                *ngIf="congtygannhat.length > 0,else then">{{congtygannhat}}</label></span>
+                        <ng-template #then><span class="text-main">Thêm kinh nghiệm làm việc</span></ng-template>
+                        <br>
+                        <span class=" text-muted">Bằng cấp cao nhất: <label
+                                *ngIf="bangcapcaonhat.length > 0">{{bangcapcaonhat}}</label></span> <span
+                            *ngIf="bangcapcaonhat.length == 0" class="text-main">Thêm học vấn và bằng cấp</span><br>
+                    </div>
+                    <ng-template #nhaphoten>
+                        <h1>Nhập họ tên</h1>
+                    </ng-template>
+                    <br>
+                    <button (click)="cv.click()" class="btn btn-outline-secondary"> <img
+                            src="../../../../../assets/image/icon/pdf.png" alt=""> Tải hồ sơ</button>
+                    <a [href]="createImgPath(user.urlCv)" #cv style="display: none;" target="_blank" download></a>
+                    <!-- <button class="btn btn-outline-secondary"><i class="fa fa-upload icon"></i>Tải hồ sơ</button> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- thông tin tài khoản -->
+<div class="card tab-info">
+    <div class="card-header bg-white" style="padding-top: 30px;">
+        <h3 style="font-size: 30px;">THÔNG TIN TÀI KHOẢN</h3>
+    </div>
+    <div class="card-body">
+        <div class="info">
+            <div class="row">
+                <div class="col-2">Email truy cập:</div>
+                <div class="col-4">{{user.email}}</div>
+            </div>
+            <div class="row">
+                <div class="col-2">Mật khẩu:</div>
+                <div class="col-4">**************</div>
+                <a (click)=isShow()>Cập nhật mật khẩu</a>
+            </div>
+        </div>
+        <br>
+        <div class="doimatkhau" *ngIf="show">
+            <form #doimatkhau="ngForm" class="card-body" (ngSubmit)="Doimatkhau(doimatkhau)">
+                <div class="form-group row">
+                    <label class="col-2">Mật khẩu hiện tại:</label>
+                    <input type="password" name="matkhau" ngModel class="form-control col-4" placeholder="">
+                </div>
+                <div class="form-group row">
+                    <label class="col-2">Mật khẩu mới:</label>
+                    <input type="password" name="matkhaumoi" ngModel class="form-control col-4" placeholder="">
+                </div>
+                <div class="form-group row">
+                    <label class="col-2">Xác nhận mật khẩu:</label>
+                    <input type="password" name="xacnhanmatkhau" ngModel class="form-control col-4" placeholder="">
+                </div>
+                <div class="row submit">
+                    <button class="btn btn-main">Cập nhật</button>
+                    <a class="btn btn-outline-main" (click)=isShow()>Hủy</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- HỒ SƠ ĐÍNH KÈM -->
+<div class="card tab-info">
+    <div class="card-header bg-white" style="padding-top: 30px;">
+        <h3 style="font-size: 30px;">HỒ SƠ ĐÍNH KÈM</h3>
+    </div>
+    <div class="card-body">
+        <button class="btn btn-outline-secondary" (click)="hoso.click()"> <span *ngIf="user.urlCv!=null,else cn">Cập
+                nhật hồ sơ</span>
+            <ng-template #cn>Tải hồ sơ</ng-template>
+
+        </button>
+        <div *ngIf="user.urlCv,else then">
+            <br>
+            <i class="fa fa-file-text" style="margin-right: 5px;" aria-hidden="true"></i>
+            <span>{{user.urlCv | catchuoi:17}}</span>
+            <i class="fa fa-times" style="margin-left: 20px;" aria-hidden="true" (click)="XoaCV()"></i>
+        </div>
+        <ng-template #then>
+            <br>
+            <small class="text-muted">Định dạng file chỉ có thể là .docx và pdf và nhỏ hơn 2MB</small>
+        </ng-template>
+        <div class="row" style="margin-bottom:15px;">
+            <input type="file" #hoso placeholder="Choose file" (change)="uploadHoso(hoso.files)"
+                accept=".pdf,.doc,.docx" style="display:none;">
+        </div>
+
+    </div>
+</div>
+<!-- thông tin cá nhân -->
+<div #thongtin class="card tab-info">
+    <div class="card-header bg-white" style="padding-top: 30px;">
+        <h3 style="font-size: 30px;"> THÔNG TIN CÁ NHÂN </h3>
+    </div>
+    <div class="card-body" *ngIf="!editthongtin,else update">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row">
+                    <label class="col-4">Email truy cập <span class="text-danger">*</span></label>
+                    <label class="col-8 "> {{user.email}}</label>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row">
+                    <label class="col-4">Họ tên <span class="text-danger">*</span></label>
+                    <label class="col-8 "> {{hoten}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row">
+                    <label class="col-4">Giới tính <span class="text-danger">*</span></label>
+                    <label class="col-8 "> {{user.gioitinh==1?'Nam':'Nữ'}}</label>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row">
+                    <label class="col-4">Hôn nhân <span class="text-danger">*</span></label>
+                    <label class="col-8 "> {{user.docthan?'Độc thân':'Kết hôn'}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row">
+                    <label class="col-4">Tỉnh/Thành phố <span class="text-danger">*</span></label>
+                    <label class="col-8 "> {{pipeTP(1)}}</label>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row">
+                    <label class="col-4">Ngày sinh <span class="text-danger">*</span></label>
+                    <label class="col-8 "> {{user.ngaysinh|date:'dd/MM/yyyy'}}</label>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row">
+                    <label class="col-4">Số điện thoại <span class="text-danger">*</span></label>
+                    <label class="col-8 "> {{user.sdt}}</label>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row">
+                    <label class="col-4">Kinh nghiệm <span class="text-danger">*</span></label>
+                    <label class="col-8 "> {{user.kinhnghiem}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2">Địa chỉ</label>
+            <label class="col-10 "> {{user.diachi}}</label>
+        </div>
+        <hr>
+        <div>
+            <a (click)="editthongtin=!editthongtin" class="float-right itemXoa"><i class="fa fa-pencil"></i></a>
+            <p class="text-muted"> Vui lòng cập nhật thông tin cá nhân</p>
+        </div>
+
+
+    </div>
+</div>
+<ng-template #update>
+    <form #f="ngForm" class="card-body" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row">
+                    <label class="col-4">Email truy cập <span class="text-danger">*</span></label>
+                    <input type="text" [disabled]="true" class="form-control col-7 " placeholder=""
+                        [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row">
+                    <label class="col-4">Họ tên <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control col-8" [(ngModel)]="hoten"
+                        [ngModelOptions]="{standalone: true}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row">
+                    <label class="col-4">Giới tính <span class="text-danger">*</span></label>
+                    <div class="col-7" style="padding: 0px;">
+                        <div>
+                            <input type="radio" name="gioitinh" [value]="1" [(ngModel)]="user.gioitinh"
+                                [ngModelOptions]="{standalone: true}">Nam &nbsp;&nbsp;
+                            <input type="radio" name="gioitinh" [value]="0" [(ngModel)]="user.gioitinh"
+                                [ngModelOptions]="{standalone: true}">Nữ
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row">
+                    <label class="col-4">Hôn nhân <span class="text-danger">*</span></label>
+                    <div class="col-8" style="padding: 0px;">
+                        <div>
+                            <input type="radio" name="docthan" [value]="true" [(ngModel)]="user.docthan"
+                                [ngModelOptions]="{standalone: true}">Độc thân &nbsp;&nbsp;
+                            <input type="radio" name="docthan" [value]="false" [(ngModel)]="user.docthan"
+                                [ngModelOptions]="{standalone: true}">Kết hôn
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row">
+                    <label class="col-4">Tỉnh/Thành phố <span class="text-danger">*</span></label>
+                    <select name="" id="" class="form-control col-7" [(ngModel)]="user.idThanhpho"
+                        [ngModelOptions]="{standalone: true}">
+                        <option value="">Thành phố</option>
+                        <option *ngFor="let item of thanhphos" [value]="item.idThanhpho">{{item.tenthanhpho}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row">
+                    <label class="col-4">Ngày sinh <span class="text-danger">*</span></label>
+                    <input type="date" class="form-control col-8" [(ngModel)]="user.ngaysinh"
+                        [ngModelOptions]="{standalone: true}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group row">
+                    <label class="col-4">Số điện thoại <span class="text-danger">*</span></label>
+                    <input type="text" name="sdt" class="form-control col-7"
+                        placeholder="Nhập vào số điện thoại của bạn" [(ngModel)]="user.sdt"
+                        [ngModelOptions]="{standalone: true}">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group row">
+                    <label class="col-4">Kinh nghiệm <span class="text-danger">*</span></label>
+                    <input type="number" name="kinhnghiem" class="form-control col-8" [(ngModel)]="user.kinhnghiem"
+                        placeholder="Nhập số năm kinh nghiệm" [ngModelOptions]="{standalone: true}">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2">Địa chỉ</label>
+            <input type="text" name="diachi" class="form-control col-10" [(ngModel)]="user.diachi"
+                placeholder="Nhập vào địa chỉ" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="float-right submit">
+            <button type="submit" (click) = "editthongtin=!editthongtin" class="btn btn-main">Lưu</button>
+            <a class="btn btn-outline-main" (click)="getInfo();editthongtin=!editthongtin">Hủy</a>
+        </div>
+    </form>
+</ng-template>
+<!-- THÔNG TIN CHUNG -->
+<div class="card tab-info">
+    <div class="card-header bg-white" style="padding-top: 30px;">
+        <h3 style="font-size: 30px;"> THÔNG TIN CHUNG </h3>
+    </div>
+    <div class="card-body">
+        <div *ngIf="!isInfo;else other_content">
+            <p>{{user.mota}}</p>
+            <hr />
+            <a (click)="isInfos()" class="float-right itemXoa"><i class="fa fa-pencil"></i></a>
+            <p class="text-muted"> Cập nhật thông tin cá nhân</p>
+        </div>
+        <ng-template #other_content>
+            <div class="form-group">
+
+                <label for="">Giới thiệu bản thân của bạn</label>
+                <textarea class="form-control" [(ngModel)]="user.mota"
+                    placeholder="Vui lòng giới thiệu bản thân và miêu tả mục tiêu nghề nghiệp" rows="5"></textarea>
+                <small id="helpId" class="text-muted">Tối đa 5000 ký tự</small>
+            </div>
+            <div class="float-right submit">
+                <button class="btn btn-main" (click)=onSubmit()>Lưu</button>
+                <button class="btn btn-outline-main" (click)="isInfos()">Hủy</button>
+            </div>
+        </ng-template>
+
+
+    </div>
+</div>
+<!-- MỤC TIÊU NGHỀ NGHIỆP -->
+<div class="card tab-info">
+    <div class="card-header bg-white" style="padding-top: 30px;">
+        <h3 style="font-size: 30px;"> MỤC TIÊU NGHỀ NGHIỆP </h3>
+    </div>
+    <div class="card-body">
+        <div *ngIf="!suamuctieu;else updatemuctieu">
+            <p>{{user.muctieunghenghiep?user.muctieunghenghiep:'Bạn chưa cập nhập mục tiêu nghề nghiệp'}}</p>
+            <hr />
+            <a (click)="suamuctieu=!suamuctieu" class="float-right itemXoa"><i class="fa fa-pencil"></i></a>
+            <p class="text-muted"> Cập nhật mục tiêu nghề nghiệp</p>
+        </div>
+        <ng-template #updatemuctieu>
+            <div class="form-group">
+
+                <label for="">Mục tiêu nghề nghiệp của bạn</label>
+                <textarea class="form-control" [(ngModel)]="user.muctieunghenghiep"
+                    placeholder="Vui lòng giới thiệu bản thân và miêu tả mục tiêu nghề nghiệp" rows="5"></textarea>
+                <small id="helpId" class="text-muted">Tối đa 5000 ký tự</small>
+            </div>
+            <div class="float-right submit">
+                <button class="btn btn-main" (click)="onSubmit();suamuctieu=!suamuctieu">Lưu</button>
+                <button class="btn btn-outline-main" (click)="suamuctieu=!suamuctieu">Hủy</button>
+            </div>
+        </ng-template>
+
+
+    </div>
+</div>
+<!-- HỌC VẤN VÀ BẰNG CẤP -->
+<div class="card tab-info">
+    <div class="card-header bg-white" style="padding-top: 30px;">
+        <h3 style="font-size: 30px;"> HỌC VẤN VÀ BẰNG CẤP </h3>
+    </div>
+    <div class="card-body">
+        <div class="item" *ngFor="let item of bangcaps">
+            <a class="float-right itemXoa"><i class="fa fa-trash-o" data-toggle="tooltip" data-placement="top"
+                    (click)="DeleteBangcap(item)" title="Xóa"></i></a>
+            <div class="thongtin">
+                <h5>{{item.chuyennganh}}</h5>
+                <p>
+                    <label>{{item.tentruong}}</label><br>
+                    <label>Hệ: {{item.tentrinhdo}}/{{item.tenbangcap}}</label><br>
+                    <label>Thời gian({{item.ngaybatdau|date:'MM/yyyy'}} -
+                        {{item.ngayketthuc|date:'MM/yyyy'}})</label><br>
+                    <label>Ghi chú:{{item.ghichu}} </label>
+                </p>
+            </div>
+        </div>
+        <div *ngIf="!isHocvan;else content">
+            <a (click)="isHocvans()" class="float-right itemXoa"><i class="fa fa-pencil"></i></a>
+            <p class="text-muted"> Vui lòng cập nhật thông tin cá nhân</p>
+        </div>
+        <ng-template #content>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group row">
+                        <label class="col-4">Chuyên nghành <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control col-7" [(ngModel)]="hocvan.chuyennganh" placeholder="">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group row">
+                        <label class="col-4">Hệ đào tạo: <span class="text-danger">*</span></label>
+                        <select class="form-control col-8" [(ngModel)]="hocvan.idTrinhdo">
+                            <option [value]="item.idTrinhdo" *ngFor="let item of listTrinhdo">
+                                {{item.tentrinhdo}}</option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group row">
+                        <label class="col-4">Trường <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control col-7" [(ngModel)]="hocvan.tentruong"
+                            placeholder="Ví dụ: Đại học công nghiệp thực phẩm TP HCM">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group row">
+                        <label class="col-4">Bằng cấp <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control col-7" [(ngModel)]="hocvan.tenbangcap"
+                            placeholder="Ví dụ: cử nhân, chứng nhận hoàn thành,...">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group row">
+                        <label class="col-4">Từ tháng <span class="text-danger">*</span></label>
+                        <input type="month" class="form-control col-7" [(ngModel)]="hocvan.ngaybatdau"
+                            placeholder="Từ tháng">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group row">
+                        <label class="col-4">Đến tháng <span class="text-danger">*</span></label>
+                        <input type="month" class="form-control col-8" [(ngModel)]="hocvan.ngayketthuc"
+                            placeholder="Đến tháng">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2">Ghi chú:</label>
+                <textarea class="form-control col-10" [(ngModel)]="hocvan.ghichu"
+                    placeholder="Ví dụ: tích cực tham gia hoạt động trường lớp" rows="5"></textarea>
+            </div>
+            <div class="float-right submit">
+                <button class="btn btn-main" (click)=Thembangcap()>Lưu</button>
+                <button class="btn btn-outline-main" (click)="isHocvans()">Hủy</button>
+            </div>
+        </ng-template>
+
+    </div>
+</div>
+<!-- KỸ NĂNG CÁ NHÂN -->
+<div class="card tab-info">
+    <div class="card-header bg-white" style="padding-top: 30px;">
+        <h3 style="font-size: 30px;">KỸ NĂNG CÁ NHÂN</h3>
+    </div>
+    <div class="card-body">
+        <div class="item thongtin" *ngFor="let item of kynangcanhan">
+            <a class="float-right itemXoa" (click)=XoaKynang(item)><i class="fa fa-trash-o" title="Xóa"></i></a><br>
+            <h5><span style="font-weight: 600;">{{item.tenkynang}}</span>: <span
+                    style="font-style: 16px;">{{item.motakynang}}</span> </h5>
+            <h5></h5>
+        </div>
+        <div *ngIf="!themkynang;else kynang">
+            <a (click)="themkynang=true" class="float-right itemXoa"><i class="fa fa-pencil"></i></a>
+            <p class="text-muted"> Cập nhật thông tin kỹ năng cá nhân</p>
+        </div>
+        <ng-template #kynang>
+            <form #f="ngForm" (ngSubmit)="ThemKynangcanhan(f.value)" novalidate class="add">
+                <div class="form-group row">
+                    <label class="col-2">Tên kỹ năng:</label>
+                    <input class="form-control col-10" name="tenkynang" ngModel required #tenkynang="ngModel"
+                        placeholder="Ví dụ: Lập trình được nhiều ngôn ngữ">
+                </div>
+                <div class="form-group row">
+                    <label class="col-2">Ghi chú:</label>
+                    <textarea class="form-control col-10" name="motakynang" ngModel required #motakynang="ngModel"
+                        placeholder="Ví dụ: Khả năng giao tiếp với người bản ngữ" rows="5"></textarea>
+                </div>
+                <div class="float-right submit">
+                    <button type="submit" class="btn btn-main">Lưu</button>
+                    <button class="btn btn-outline-main" (click)="themkynang=false">Hủy</button>
+                </div>
+            </form>
+        </ng-template>
+
+    </div>
+</div>
+<!-- NGOẠI NGỮ -->
+<div class="card tab-info">
+    <div class="card-header bg-white" style="padding-top: 30px;">
+        <h3 style="font-size: 30px;">NGOẠI NGỮ</h3>
+    </div>
+    <div class="card-body">
+        <div class="item thongtin" *ngFor="let item of ngoaingus">
+            <a class="float-right itemXoa" (click)=Xoangoaingu(item)><i class="fa fa-trash-o" data-toggle="tooltip"
+                    data-placement="top" title="Xóa"></i></a><br>
+            <h5>{{item.tenngoaingu}}</h5>
+            <p *ngIf="!item.coban;else coban">
+                <span *ngIf="item.nghe">Nge </span>
+                <span *ngIf="item.noi">Nói </span>
+                <span *ngIf="item.doc">Đọc </span>
+                <span *ngIf="item.viet">Viết </span>
+            </p>
+            <ng-template #coban>
+                <p>Cơ bản</p>
+            </ng-template>
+            <p>Ghi chú:{{item.ghichu}}</p>
+
+        </div>
+        <div *ngIf="!isNgoaingu;else ngoaingu">
+            <a (click)="isNgoaingus()" class="float-right itemXoa"><i class="fa fa-pencil"></i></a>
+            <p class="text-muted"> Vui lòng cập nhật thông tin cá nhân</p>
+        </div>
+        <ng-template #ngoaingu>
+            <div class="add">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group row">
+                            <div class="col-4">Tên ngoại ngữ</div>
+                            <select class="form-control col-7" [(ngModel)]="language.idNgoaingu">
+                                <option>Chọn ngôn ngữ</option>
+                                <option *ngFor="let item of listNgoaiNgu" [value]="item.idNgoaingu">
+                                    {{item.tenngoaingu}}</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-3">
+                                <input type="checkbox" [(ngModel)]="language.nghe"> &nbsp; Nghe
+                            </div>
+                            <div class="col-3">
+                                <input type="checkbox" [(ngModel)]="language.noi"> &nbsp; Nói
+                            </div>
+                            <div class="col-3">
+                                <input type="checkbox" [(ngModel)]="language.doc"> &nbsp; Đọc
+                            </div>
+                            <div class="col-3">
+                                <input type="checkbox" [(ngModel)]="language.viet"> &nbsp; Viết
+                            </div>
+                            <div class="col-6">
+                                <input type="checkbox" [(ngModel)]="language.coban"> &nbsp; cơ bản<nav></nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2">Ghi chú:</label>
+                    <textarea class="form-control col-10" [(ngModel)]="language.ghichu"
+                        placeholder="Ví dụ: Khả năng giao tiếp với người bản ngữ" rows="5"></textarea>
+                </div>
+                <div class="float-right submit">
+                    <button class="btn btn-main" (click)=AddNgoaingu()>Lưu</button>
+                    <button class="btn btn-outline-main" (click)="isNgoaingus()">Hủy</button>
+                </div>
+            </div>
+        </ng-template>
+
+    </div>
+</div>
+<!-- KINHNGHIEM LAM VIỆC -->
+<div class="card tab-info">
+    <div class="card-header bg-white" style="padding-top: 30px;">
+        <h3 style="font-size: 30px;">KINH NGHIỆM LÀM VIỆC</h3>
+    </div>
+    <div class="card-body">
+        <div class="item" *ngFor="let item of kinhnghiems">
+            <a class="float-right itemXoa" (click)=Xoakinhnghiem(item)><i class="fa fa-trash-o" data-toggle="tooltip"
+                    data-placement="top" title="Xóa"></i></a>
+            <div class="thongtin">
+                <h5>{{item.tencongty}}</h5>
+                <p>
+                    <label>{{item.chucdanh}}</label><br>
+                    <label>Thời gian ({{item.thoigianbatdau | date: 'MM/yyyy'}} -
+                        <span *ngIf="!congviechientai,else cvht">{{item.thoigianketthuc  | date: 'MM/yyyy'}}</span>
+                        <ng-template #cvht></ng-template>
+                            Hiện tại
+                        )</label><br>
+                    <label>{{item.ghichu}}</label>  
+                </p>
+            </div>
+        </div>
+        <div *ngIf="!isKinhnghiem;else kinhnghiem">
+            <a (click)="isKinhnghiems()" class="float-right itemXoa"><i class="fa fa-pencil"></i></a>
+            <p class="text-muted"> Vui lòng cập nhật thông tin cá nhân</p>
+        </div>
+        <ng-template #kinhnghiem>
+            <div class="add">
+                <div class="form-group row">
+                    <label class="col-2">Công ty <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control col-10" [(ngModel)]="exp.tencongty"
+                        placeholder="Tên công ty">
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group row">
+                            <label class="col-4">Chức danh <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control col-7" [(ngModel)]="exp.chucdanh"
+                                placeholder="Ví dụ: UI/UX">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group row">
+                            <label class="col-4">Chức vụ <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control col-7" [(ngModel)]="exp.chucvu"
+                                placeholder="Ví dụ: UI/UX">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group row">
+                            <label class="col-4">Từ tháng <span class="text-danger">*</span></label>
+                            <input type="month" class="form-control col-7" [(ngModel)]="exp.thoigianbatdau"
+                                placeholder="Từ tháng">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group row">
+                            <label class="col-4">Đến tháng <span class="text-danger">*</span></label>
+                            <input type="month" [disabled]="exp.congviechientai" (change)="endjob(exp.thoigianketthuc)"
+                                class="form-control col-8" [(ngModel)]="exp.thoigianketthuc" placeholder="Đến tháng">
+                            <div class="col-4"></div>
+                            <div class="col-8">
+                                <input type="checkbox" (change)="congviechientai(exp.congviechientai)"
+                                    [(ngModel)]="exp.congviechientai"> &nbsp; Công việc hiện
+                                tại
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2">Ghi chú:</label>
+                    <textarea class="form-control col-10" [(ngModel)]="exp.ghichu"
+                        placeholder="Ví dụ: Hoàn thành tốt công việc được giao" rows="5"></textarea>
+                </div>
+                <div class="float-right submit">
+                    <button class="btn btn-main" (click)=AddKinhnghiem()>Lưu</button>
+                    <button class="btn btn-outline-main" (click)="isKinhnghiems()">Hủy</button>
+                </div>
+            </div>
+        </ng-template>
+
+    </div>
+</div>
+<!-- CÔNG VIỆC MONG MUỐN -->
+<div class="card tab-info">
+    <div class="card-header bg-white" style="padding-top: 30px;">
+        <h3 style="font-size: 30px;">CÔNG VIỆC MONG MUỐN</h3>
+    </div>
+    <div class="card-body" *ngIf="!editCV">
+        <div class="item-cv border-bottom">
+           
+            <div class="row">
+                <div class="col-4">
+                    <p> <span class="text-muted d-block">Nơi làm việc mong muốn</span>
+                        <span>{{tenthanhpho(user.idThanhpho)}}</span>
+                    </p>
+                </div>
+                <div class="col-4">
+                    <p>
+                        <span class="text-muted d-block">Vị trí ứng tuyển</span>
+                        <span>{{user.vitriungtuyen}}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <p>
+                        <span class="text-muted d-block">Ngành nghề mong muốn</span>
+                        <span>{{nganhlamviec(user.nganhmongmuon)}}</span>
+                    </p>
+                </div>
+                <div class="col-4">
+                    <p>
+                        <span class="text-muted d-block">Cấp bậc mong muốn</span>
+                        <span>{{user.capbacmongmuon}}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <p>
+                        <span class="text-muted d-block"> Mức lương mong muốn</span>
+                        <span>{{user.luong | number}} <span class="text-muted">(VNĐ)</span></span>
+                    </p>
+                </div>
+                <div class="col-4">
+                    <p>
+                        <span class="text-muted d-block">Loại công việc mong muốn</span>
+                        <span>{{user.thoigianlamviecmongmuon  ? user.thoigianlamviecmongmuon:'Cập nhập thông tin'}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a (click)="editCV=!editCV" class="float-right itemXoa"><i class="fa fa-pencil"></i></a>
+            <p class="text-muted"> Vui lòng cập nhật thông tin cá nhân</p>
+        </div>
+    </div>
+    <div class="card-body" *ngIf="editCV">
+        <form #congvie="ngForm" class="card-body" (ngSubmit)="onSubmit()" autocomplete="off">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row" style="margin-bottom: 20px;">
+                        <label class="col-2">Vị trí ứng tuyển: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control col-10" placeholder="Vị trí ứng tuyển"
+                        [(ngModel)]="user.vitriungtuyen" [ngModelOptions]="{standalone: true}">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="row" style="margin-bottom: 20px;">
+                        <label class="col-2">Thành phố: <span class="text-danger">*</span></label>
+                        <select class="form-control col-10" [(ngModel)]="user.idThanhpho"
+                            [ngModelOptions]="{standalone: true}">
+                            <option value=null>Chọn thành phố</option>
+                            <option [value]="item.idThanhpho" *ngFor="let item of thanhphos">{{item.tenthanhpho}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="row" style="margin-bottom: 20px;">
+                        <label class="col-2">Ngành nghề: <span class="text-danger">*</span></label>
+                        <select class="form-control col-10" [(ngModel)]="user.nganhmongmuon"
+                            [ngModelOptions]="{standalone: true}">
+                            <option value=null>Chọn ngành</option>
+                            <option [value]="item.idNganh" *ngFor="let item of listNganh">{{item.tennganh}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group row">
+                        <label class="col-4">Loại công việc <span class="text-danger">*</span></label>
+                        <select name="" id="" class="form-control col-7" [(ngModel)]="user.thoigianlamviecmongmuon"
+                            [ngModelOptions]="{standalone: true}">
+                            <option value=null disabled>Loại công việc mong muốn</option>
+                            <option *ngFor="let item of listLoaicongviec" [value]="item.tenloaicongviec">
+                                {{item.tenloaicongviec}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group row">
+                        <label class="col-4">Cấp bậc mong muốn <span class="text-danger">*</span></label>
+                        <select id="" class="form-control col-8" [(ngModel)]="user.capbacmongmuon"
+                            [ngModelOptions]="{standalone: true}">
+                            <option value=null>Chọn cấp bậc mong muốn</option>
+                            <option *ngFor="let item of capbac" [value]="item.ten">{{item.ten}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group row">
+                        <label class="col-4">Lương mong muốn <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control col-7" placeholder="Lương mong muôn"
+                            [(ngModel)]="user.luong " [ngModelOptions]="{standalone: true}">
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="float-right submit">
+                <button class="btn btn-main" (click)=AddKinhnghiem()>Lưu</button>
+                <button class="btn btn-outline-main" (click)="isKinhnghiems()">Hủy</button>
+            </div> -->
+            <div class="float-right submit">
+                <button type="submit" class="btn btn-main text-white">Lưu</button>
+                <a class="btn btn-outline-main" (click)=Resetform();getInfo()>Hủy</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- TEST UPLOAD FILE -->

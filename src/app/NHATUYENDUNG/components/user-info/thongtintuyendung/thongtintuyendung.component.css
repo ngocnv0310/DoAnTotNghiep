@@ -1,0 +1,95 @@
+.edit {
+    padding-top: 10px;
+    font-size: 20px;
+}
+.card-header{
+    background-color: white;
+}
+.edit a {
+    margin-right: 15px;
+    color: tomato;
+}
+.box h6{
+    font-size: 16px;
+}
+.col-2{
+    font-size: 14px;
+    color: #B3B3B3;
+    padding-top: 10px;
+}
+.col-2 text{
+    font-size: 16px;
+}
+.col-4{
+    font-size: 14px;
+    color: #B3B3B3;
+}
+.tab-info h1{
+    font-size: 32px;
+    padding-top: 30px;
+}
+.tab-info h4{
+    font-size: 16px;
+    padding-top: 30px;
+}
+.tab-info{
+    margin-top: 15px;
+    
+}
+.edit i:hover {
+    transform: scale(1.2);
+}
+
+.empty {
+    text-align: center;
+}
+
+.empty i {
+    color: gray;
+    font-size: 100px;
+}
+
+.empty p {
+    color: gray;
+    font-size: 20px;
+}
+
+.submit {
+    margin-left: 20%;
+}
+
+.submit .btn {
+    margin-right: 20px;
+    width: 100px;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    width: 95%;
+    overflow-x: hidden;
+}
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

@@ -1,0 +1,43 @@
+<h1>CÁC CÔNG TY HÀNG ĐẦU</h1>
+<div class="card" [routerLink]="['/congty/chi-tiet-cong-ty/',topNTD.idNhatuyendung]" routerLinkActive="router-link-active" >
+    <div class="congty position-relative">
+        <div class="logo position-absolute ">
+            <img [src]="createImgPath(topNTD.logo)" alt="Card image cap">
+        </div>
+        <img class="card-img-top w-100" height="200px" [src]="createImgPath(topNTD.bannercongty)" alt="Card image cap">
+        <div class="card-body text-center text" style="padding: 20px;padding-bottom: 0;">
+            <span class="card-title">{{topNTD.tencongty}}</span>
+            <p class="card-text ellipsis">{{topNTD.gioithieucongty}}</p>
+            <label style="margin-top: 10px;"><span style="color: var(--second);">{{topNTD.luotxem}}</span> lượt
+                xem</label>
+        </div>
+
+    </div>
+</div>
+<div class="card" style="margin-top: 30px;">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../../../../assets/image/z1959401970382_f51249bde9cc666ed402fb567ed63875.jpg" alt="">
+            </div>
+            <div class="carousel-item">
+                <img src="../../../../assets/image/z1959401983286_3f5e240cc6d8bd98e18472dfb9832fc0.jpg" alt="">
+            </div>
+            <div class="carousel-item">
+                <img src="../../../../assets/image/z1959401983290_cb555212aaa0252b1881b24e6b5fd062.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card" style="margin-top: 30px;">
+    <div id="carouselExampleControls" class="carousel slide" data-interval="3000" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../../../../assets/image/z1959401983288_6e7103312471de112495122310c07a5d.jpg" alt="">
+            </div>
+            <div class="carousel-item">
+                <img src="../../../../assets/image/z1959401975128_09abae0ede01d2c36252607d8cde2111.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</div>

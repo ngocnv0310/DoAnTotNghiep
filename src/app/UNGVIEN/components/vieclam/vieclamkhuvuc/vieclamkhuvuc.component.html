@@ -1,0 +1,13 @@
+<div class="main">
+    <div class="sitemap-container container">
+        <h1 class="sitemap-header text-main">Công Việc Theo Địa Điểm</h1>
+        <div class="sitemap-content">
+            <div class="row">
+                <div class="col-sm-4 itemTP" *ngFor="let item of listTP">
+                    <a [routerLink]="['/ungvien/vieclam']" [queryParams]="{thanhpho: item.idThanhpho}"
+                    routerLinkActive="router-link-active" >{{item.tenthanhpho}}({{item.soluongtin}})</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

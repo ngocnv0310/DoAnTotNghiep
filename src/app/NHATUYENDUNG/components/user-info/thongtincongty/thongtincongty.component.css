@@ -1,0 +1,99 @@
+.header{
+    min-height: 200px;
+}
+.card-header{
+    background-color: white;
+}
+.logo{
+    text-align: center;
+}
+.tab-info h3{
+    font-size: 32px;
+    padding-top: 30px;
+}
+.col-2{
+    color: #B3B3B3;
+}
+.col-6{
+    font-size: 16px;
+}
+.col-4 text{
+    font-size: 16px;
+}
+.col-10{
+    font-size: 16px;
+}
+.logo img{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-left: 10%;
+}
+
+.logo a{
+    color: tomato;
+}
+
+.head .icon{
+    margin-right: 10px;
+    font-size: 120%;
+}
+.tab-info{
+    margin-top: 15px;
+    
+}
+
+.tab-info .card-body{
+    padding-right: 20px;
+}
+.submit{
+    margin-left: 20%;
+}
+
+.submit .btn{
+    margin-right: 20px;
+    width: 100px;
+}
+
+.info a{
+    color:tomato
+}
+.info a:hover{
+    border-bottom: tomato solid 2px;
+}
+
+.item{
+    border-bottom: gray 1px solid;
+    margin-bottom: 5px;
+}
+
+.btnluu{
+    background-color: #F48120;
+    color: white;
+}
+  .itemXoa:hover {
+    transform: scale(1.2);
+  }
+  .itemXoa:hover i{
+    color: blue;
+  }
+
+  .thongtin h5{
+      font-size: 20px;
+  }
+
+  .upload{
+    font-weight:bold;
+    color:#28a745;
+    margin-left: 15px;
+    line-height: 36px;
+}
+
+.banner img{
+    outline: 1px solid gray;
+    /* outline-style: ; */
+    /* border: 5px solid gray; */
+    /* box-shadow: 0 0 3pt 2pt red; */
+    outline-offset: 5px;
+    max-height: 100px;
+}

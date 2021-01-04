@@ -1,0 +1,32 @@
+
+.main{
+    background-color: #FAFAFA;
+}
+
+.box{
+    padding: 30px;
+    
+}
+.box h3{
+    font-size: 25px ;
+    color: #555555;
+    text-align: center; 
+    font-weight: bold;
+    
+}
+
+.box p{
+    text-align: left;
+}
+.box a{
+    color: #3DC089;
+}
+.box button{
+    background-color: #F48120;
+    border-radius: 18px;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 60%;
+    margin-left: 20%;
+}

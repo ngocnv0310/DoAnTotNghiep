@@ -1,0 +1,18 @@
+
+.empty{
+    text-align: center;
+
+}
+
+.empty i{
+    color: gray;
+    font-size: 100px;
+}
+.empty p{
+    color: gray;
+    font-size: 20px;
+}
+
+.tab-info h1{
+    font-size: 32px;
+}

@@ -1,0 +1,35 @@
+<div class="dieuhuong">
+    <div class="container">
+        <ul class="nav">
+            <li class="nav-item">
+                <h1 class="nav-link"> Thông tin</h1>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['./']" routerLinkActive="router-link-active" >
+                    <h2 [class.chose]="step=='step1'" (click)="step='step1'">Thông tin cá nhân</h2>
+                </a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" [routerLink]="['./viecdaluu']" routerLinkActive="router-link-active">
+                    <h2 [class.chose]="step=='step2'" (click)="step='step2'">Việc làm đã lưu</h2>
+                </a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" [routerLink]="['./vieclamungtuyen']" routerLinkActive="router-link-active" >
+                    <h2 [class.chose]="step=='step3'" (click)="step='step3'">Việc làm đã ứng tuyển</h2>
+                </a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" [routerLink]="['./thong-bao-viec-lam']" routerLinkActive="router-link-active" >
+                    <h2 [class.chose]="step=='step4'" (click)="step='step4'">Thông báo việc làm</h2>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="main">
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</div>

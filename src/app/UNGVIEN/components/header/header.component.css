@@ -1,0 +1,39 @@
+.info{
+    padding-left: 20px;
+    width: 60%;
+    float: left;
+}
+
+.icon-info{
+    margin-right: 10px;
+}
+.icon-info i{
+    font-size: 120%;
+    padding: 3px;
+}
+
+.user{
+    float: right;
+    width: 35%;
+    text-align: right;
+}
+
+.user .icon-info i{
+    margin-left: 10px;
+}
+
+
+.head{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.chose{
+    font-size: 20px;
+    margin-left: 10px;
+    letter-spacing: 1px;
+}
+
+.boder{
+    border-bottom: 2px solid var(--main);
+}

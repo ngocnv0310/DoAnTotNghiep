@@ -1,0 +1,79 @@
+<footer>
+    <div class="container ">
+        <div class="row">
+            <div class="col-3 logo">
+                <img src="../../../../assets/image/logo.jpg" alt="logo" style="width:80%">
+            </div>
+            <div class="col-3 cot">
+                <h3>JEEJOB</h3>
+                <ul class="navbar-nav">
+                    <li class="nav-item ">
+                        <a class="text-dark" [routerLink]="['/ungvien/gioi-thieu']">Về JEEJOB</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="text-dark" [routerLink]="['/ungvien/lien-he']">Liên hệ</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="text-dark" [routerLink]="['/ungvien/thoa-thuan-su-dung']">Thỏa thuận sử dụng</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="text-dark" [routerLink]="['/ungvien/quy-dinh-bao-mat']">Quy định bảo mật</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-3 cot">
+                <h3>Việc làm theo khu vực</h3>
+                <ul class="navbar-nav">
+                    <li class="nav-item ">
+                        <a class="text-dark" [routerLink]="['/ungvien/vieclam']" [queryParams]="{thanhpho: '79'}">Hồ Chí Minh</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="text-dark"  [routerLink]="['/ungvien/vieclam']" [queryParams]="{thanhpho: '1'}">Hà Nôi</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="text-dark"[routerLink]="['/ungvien/vieclam']" [queryParams]="{thanhpho: '48'}">Đà Nẵng</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="text-dark" [routerLink]="['/ungvien/vieclam']" [queryParams]="{thanhpho: '75'}">Đồng Nai</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="text-dark" [routerLink]="['/ungvien/vieclam']" [queryParams]="{thanhpho: '31'}">Hải phòng</a>
+                    </li>
+                    <li class="nav-item" >
+                        <a class="nav-link"  style="color: var(--second);" [routerLink]="['/ungvien/viec-lam-theo-khu-vuc']">Xem tất cả khu vực >></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-3 cot">
+                <h3>Việc làm theo ngành nghề</h3>
+                <ul class="navbar-nav">
+                    <li class="nav-item ">
+                        <a class="text-dark" [routerLink]="['/ungvien/vieclam']" [queryParams]="{nganh: '4'}">Kế toán</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="text-dark" [routerLink]="['/ungvien/vieclam']" [queryParams]="{nganh: '14'}">Ngân hàng </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="text-dark" [routerLink]="['/ungvien/vieclam']" [queryParams]="{nganh: '1'}">IT - Phần mềm</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="text-dark"[routerLink]="['/ungvien/vieclam']" [queryParams]="{nganh: '2'}">IT - Phần cứng</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="text-dark" [routerLink]="['/ungvien/vieclam']" [queryParams]="{nganh: '21'}">Điện/Điện tử</a>
+                    </li>
+                    <li class="nav-item" >
+                        <a class="nav-link" style="color: var(--second);" [routerLink]="['/ungvien/viec-lam-theo-nganh']">Xem tất cả ngành nghề >></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr/>
+        <div class="footer">
+            <b><small style="font-size: 12px;">
+                ©2019 HUFI CO., LTD. All rights reserved. <br>
+ 140 Lê Trọng Tấn, P.Tây Thanh, Q.Tân Phú,TP.HCM
+             </small></b>
+        </div>
+    </div>
+</footer>

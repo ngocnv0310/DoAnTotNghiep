@@ -1,0 +1,94 @@
+<form #congvie="ngForm" class="card-body" (ngSubmit)="submitCongviec()" autocomplete="off">
+    <div class="row">
+        <div class="col-4 text-befor">
+                Tên việc làm
+        </div>
+        <input type="text" class="form-control col-8" [(ngModel)]="congviecmongmuon.tenvieclam" placeholder="Tên công việc" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="row">
+        <label class="col-4 text-befor">Thành phố: <span class="text-danger">*</span></label>
+        <div class="my-chose  col-8 ">
+            <div class="row">
+                <button type="button" *ngFor="let item of listTP,let i = index" style="margin: 5px 5px 0 0;"
+                    class="btn btn-sm " (click)="remove(i)">{{item.tenthanhpho}}
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+
+                <a style="margin: 10px 5px 0 0;color:var(--second)" data-toggle="dropdown" *ngIf="listTP.length<3">
+                    <img src="../../../../../assets/image/daucong.png" alt="" style="vertical-align: unset;"> Thêm Thành
+                    phố</a>
+                <div class="input-group-append" *ngIf="listTP.length<3">
+                    <div class="dropdown-menu scrollable-menu ">
+                        <a class="dropdown-item" *ngFor="let item of thanhphos"
+                            (click)="addTP(item)">{{item.tenthanhpho}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <label class="col-4 text-befor">Ngành nghề: <span class="text-danger">*</span></label>
+        <div class="my-chose  col-8 ">
+            <div class="row">
+                <button type="button" *ngFor="let item of dsNganh,let i = index" style="margin: 5px 5px 0 0;"
+                    class="btn btn-sm " (click)="removeNganh(i)">{{item.tennganh}}
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+
+                <a style="margin: 10px 5px 0 0; color: var(--second)" data-toggle="dropdown" *ngIf="dsNganh.length<3">
+                    <img src="../../../../../assets/image/daucong.png" alt="" style="vertical-align: unset;"> Thêm
+                    Ngành</a>
+                <div class="input-group-append" *ngIf="dsNganh.length<3">
+                    <div class="dropdown-menu scrollable-menu">
+                        <a class="dropdown-item" *ngFor="let item of listNganh,let i = index"
+                            (click)="addNganh(item)">{{item.tennganh}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <label class="col-4 text-befor">Loại công việc <span class="text-danger">*</span></label>
+        <select name="" id="" class="form-control col-8" [(ngModel)]="congviecmongmuon.idLoaicongviec"
+            [ngModelOptions]="{standalone: true}">
+            <option value=0 disabled>Loại công việc mong muốn</option>
+            <option *ngFor="let item of listLoaicongviec" [value]="item.idLoaicongviec">
+                {{item.tenloaicongviec}}
+            </option>
+        </select>
+    </div>
+    <br>
+    <div class="row">
+        <label class="col-4 text-befor">Cấp bậc mong muốn <span class="text-danger">*</span></label>
+        <select id="" class="form-control col-8" [(ngModel)]="congviecmongmuon.capbac"
+            [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let item of capbac" [value]="item.ten">{{item.ten}}</option>
+        </select>
+    </div>
+    <br>
+    <div class="row">
+        <label class="col-4 text-befor">Lương mong muốn <span class="text-danger">*</span></label>
+        <div class="col-8" style="padding:0;">
+            <input type="number" class="form-control" placeholder="Lương mong muốn"
+                [(ngModel)]="congviecmongmuon.luong " [ngModelOptions]="{standalone: true}">
+            <div style="margin-top  : 5px;">
+               <span class="text-muted">(VND/tháng)</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-4 text-befor">Nhận thông báo <span class="text-danger">*</span></label>
+        <div class="col-8" style="padding:0;">
+            <div style="margin-top  : 10px;">
+                <input type="radio" name="gioitinh" checked  style="margin-right: 5px;margin-left: 10px;">Hằng tuần
+            </div>
+        </div>
+    </div>
+    <div class="float-right submit">
+        <button type="submit" style="width:100px; margin-right: 20px;" class="btn btn-main text-white">Lưu</button>
+        <a style="width:100px" class="btn btn-outline-main" (click)=Resetform()>Hủy</a>
+    </div>
+</form>
+

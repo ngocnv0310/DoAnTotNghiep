@@ -1,0 +1,246 @@
+<div class="position-relative">
+    <div id="carouselbanner" class="carousel slide" data-interval="3000" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="./../../../../assets/image/banner.png" class="d-block w-100" height="525px" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="./../../../../assets/image/banner.png" class="d-block w-100" height="525px" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="./../../../../assets/image/banner.png" class="d-block w-100" height="525px" alt="...">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselbanner" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselbanner" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div class="box">
+        <div class="text-header">
+            <h1>
+                công việc bạn cần tìm
+            </h1>
+        </div>
+        <div class="row">
+            <div class="boder-search">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm công việc, công ty"
+                        aria-label="Recipient's username" aria-describedby="basic-addon2" #search>
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button" (click)="SearchCongviec(search.value)">Tìm
+                            kiếm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section #vieclamnoibattext>
+    <h1 class="text-center text-head">VIỆC LÀM GỢI Ý</h1>
+    <div class="container">
+        <div id="demo" class="carousel slide" data-interval="false">
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row bg-white">
+                        <div class="col-6" *ngFor="let item of listTest">
+                            <div class="item-vieclam">
+                                <div class="row" style="padding-left: 10px;">
+                                    <div class="col-2">
+                                        <img [src]="createImgPath(item.logo)" alt="">
+                                    </div>
+                                    <div class="col-8 name text-secondary">
+                                        <a [routerLink]="['/ungvien/vieclam/', item.idTintuyendung]" title=" {{item.tieude}}">
+                                            <p class="ellipsis" style="font-size: 20px;font-weight: 500px; color:gray">
+                                                {{item.tieude}}</p>
+                                        </a>
+                                        <p class="ellipsis1">{{item.tencongty}}</p>
+                                    </div>
+                                    <div class="col-2">
+                                        <a class="btn btn-danger float-right text-white icon-hot">Hot</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row bg-white">
+                        <div class="col-6" *ngFor="let item of listTest">
+                            <div class="item-vieclam">
+                                <div class="row" style="padding-left: 10px;">
+                                    <img [src]="createImgPath(item.logo)" alt="">
+                                    <div class="col-9 name text-secondary" style="margin-left:10px">
+                                        <a [routerLink]="['/ungvien/vieclam/', item.idTintuyendung]">
+                                            <p class="ellipsis" style="font-size: 20px;font-weight: 500px; color:gray">
+                                                {{item.tieude}}</p>
+                                        </a>
+                                        <p class="ellipsis1">{{item.tencongty}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row bg-white">
+                        <div class="col-6" *ngFor="let item of listTest">
+                            <div class="item-vieclam">
+                                <div class="row" style="padding-left: 10px;">
+                                    <img [src]="createImgPath(item.logo)" alt="">
+                                    <div class="col-9 name text-secondary" style="margin-left:10px">
+                                        <a [routerLink]="['/ungvien/vieclam/', item.idTintuyendung]">
+                                            <p class="ellipsis" style="font-size: 20px;font-weight: 500px; color:gray">
+                                                {{item.tieude}}</p>
+                                        </a>
+                                        <p class="ellipsis1">{{item.tencongty}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- The dots/circles -->
+            <ul class="carousel-indicators position-relative" style="bottom: -15px;">
+                <li data-target="#demo" class="dot active" (click)="indexlist=1;;onchange()" data-slide-to="0"></li>
+                <li data-target="#demo" class="dot" (click)="indexlist=2;onchange()" data-slide-to="1"></li>
+                <li data-target="#demo" class="dot" (click)="indexlist=3;onchange()" data-slide-to="2"></li>
+            </ul>
+            <button [routerLink]="['/ungvien/vieclam']" class="btn btn-main float-right">Xem thêm nhiều tin tuyển dụng phù hợp với bạn  </button>
+        </div>
+    </div>
+</section>
+
+<section #bannerquangcao style="margin-top: 50px;">
+    <div class="container">
+        <div class="position-relative">
+            <div id="carouselExampleControls" class="carousel slide" data-interval="3000" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <a class="btn text-white position-absolute viewbanner" [routerLink]="['/ungvien/vieclam']"  [queryParams]="{nganh: '1'}"
+                        style="background-color: var(--main);outline: none;"> Xem danh sách việc làm</a>
+                        <img src="../../../../assets/image/trangchu2.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <a class="btn text-white position-absolute viewbanner" [routerLink]="['/ungvien/vieclam']" [queryParams]="{nganh: '33'}"
+                        style="background-color: var(--main);outline: none;"> Xem danh sách việc làm</a>
+                        <img src="../../../../assets/image/banner-edited1.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <a class="btn text-white position-absolute viewbanner" [routerLink]="['/ungvien/vieclam']" [queryParams]="{nganh: '7'}"
+                        style="background-color: var(--main);outline: none;"> Xem danh sách việc làm</a>
+                        <img src="../../../../assets/image/batdongsan.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <a class="btn text-white position-absolute viewbanner" [routerLink]="['/ungvien/vieclam']" [queryParams]="{nganh: '14'}"
+                        style="background-color: var(--main);outline: none;"> Xem danh sách việc làm</a>
+                        <img src="../../../../assets/image/nganhnganhang.png" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section #tuyenndunghangdau>
+    <div class="container">
+        <h1 class="text-center text-head">NHÀ TUYỂN DỤNG HÀNG ĐẦU</h1>
+        <div class="position-relative">
+            <div id="carouselExampleControls2" class="carousel slide" data-interval="4000" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../../../../assets/image/bn_top_1.jpg" 
+                        [routerLink]="['/ungvien/tat-ca-cong-ty']"
+                            class="d-block w-100" height="350px" alt="...">
+                    </div>
+                    <div class="carousel-item" *ngFor="let item of congtynoibat">
+                        <div class="row" style="background:#fff">
+                            <div class="col-7" style="padding:0">
+                                <img [src]="createImgPath(item.bannercongty)" class="d-block w-100" alt="..."
+                                    height="350px">
+                            </div>
+                            <div class="col-5 item-ntd">
+                                <img [src]="createImgPath(item.logo)" alt="...">
+                                <br>
+                                <div class="tencongty">
+                                    <a class="d-block" target="_blank" [routerLink]="['/congty/chi-tiet-cong-ty/',item.idNhatuyendung]">
+                                        <span style="font-size: 24px; padding-top: 10px;">{{item.tencongty}}</span></a>
+                                    <span style="font-size: 16px;color: var(--second);">Global provider of innovative
+                                        electronics solution</span>
+                                </div>
+                                <p class="block-ellipsis" style="font-size: 20px;">{{item.gioithieucongty}}</p>
+                                <br>
+                                <a target="_blank" [routerLink]="['/congty/chi-tiet-cong-ty/',item.idNhatuyendung]"
+                                    style="color:var(--main)">Xem thêm >></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls2" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls2" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section #quangcao>
+    <div class="container">
+        <img src="../../../../assets/image/2304x296.png" class="d-block w-100" alt="">
+    </div>
+</section>
+<section></section>
+
+
+
+<!-- Button trigger modal -->
+<button id="idload" type="button" style="display: none;" class="btn btn-primary" data-toggle="modal"
+    data-target="#exampleModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" style="width: 50%;max-width: none;" role="document">
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-body"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h1 class="border-bottom">TIÊU CHÍ TÌM VIỆC</h1>
+                    <P>Chúng tôi sẽ gửi thông báo cho những tiêu chí bạn chọn</P>
+
+
+                    <app-taothongbao (luuData)="onData($event)"></app-taothongbao>
+                    <div class="chuabutton float-right" style="display: none;">
+                        <button id="dong" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,104 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light"style="padding: 0;margin: 0;">
+    <div class="container">
+        <div class="collapse navbar-collapse ">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" [routerLink]="['./']">
+                        <small id="helpId" class="icon-info"><i class="fa fa-phone"></i> 1900 6467</small>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['./']">
+                        <small id="helpId" class="icon-info"><i class="fa fa-envelope-o"></i>searchjob.com.vn</small>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['./']">
+                        <small id="helpId" class="icon-info"><i class="fa fa-facebook"></i></small>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['./']">
+                        <small id="helpId" class="icon-info"><i class="fa fa-skype"></i></small>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav navbar-right">
+                <li class="nav-item d-none">
+                    <a class="nav-link" [routerLink]="['/']">
+                        <small id="helpId" class="icon-info">Cho người tìm việc</small>
+                    </a>
+                </li>
+                <li class="nav-item dropleft">
+                    <a class="nav-link" href="#" id="THONGBAO" data-toggle="dropdown" >
+                        <span class="badge badge-danger">{{thongbao.length}}</span>
+                        <small id="helpId" class="icon-info"><i class="fa fa-bell-o"></i></small>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="THONGBAO">
+                        <div *ngIf="thongbao,else thongbaonull">
+                            <a class="dropdown-item" *ngFor="let item of thongbao" (click)="Xemthongbao(item.idTintuyendung)"><i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                 Có <span class="text-main">{{item.dsungtuyen.length}} </span> ứng tuyển vào công việc <span class = "text-main"> {{item.tieude}} </span> 
+                                </a>
+                        </div>
+                        <div *ngIf="thongbao.length < 1" class="dropdown"> 
+                            <span>Không có thông báo</span>
+                        </div>
+                        
+                        <ng-template #thongbaonull>
+                            <span>Không có thông báo mới</span>
+                        </ng-template>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <small id="helpId" class="icon-info">
+                        <span *ngIf="ntd.tenviettat">{{ ntd.tenviettat }}</span>
+                        <i class="fa fa-user"></i></small>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <div *ngIf="!islogin,else login">
+                            <a class="dropdown-item" [routerLink]="['/nhatuyendung']" *ngIf="!islogin">Đăng nhập</a>
+                            <a class="dropdown-item" [routerLink]="['/nhatuyendung/dang-ky']">Đăng ký</a>
+                        </div>
+                        <ng-template #login>
+                            <a class="dropdown-item" [routerLink]="['/nhatuyendung/home']"><i class="fa fa-folder-o" aria-hidden="true"></i> Thông tin công ty</a>
+                            <a class="dropdown-item" [routerLink]="['/nhatuyendung/home/thong-tin/tuyen-dung']"><i class="far fa-heart" aria-hidden="true"></i> Tuyển dụng</a>
+                            <a class="dropdown-item" [routerLink]="['/nhatuyendung/home/thong-tin/ung-vien-da-luu']"><img src="../../../../assets/image/icon/vieclam.png" width="16px" alt=""> Tìm kiếm ứng viên</a>
+                            <a class="dropdown-item" [routerLink]="['/nhatuyendung/home/thong-tin/ung-vien-da-ung-tuyen']"><i class="fa fa-bell-o" aria-hidden="true"></i> Danh sách ứng tuyển</a>
+                            <a class="dropdown-item" (click)=logout()>Logout</a>
+                        </ng-template>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container">
+        <a class="navbar-brand" [routerLink]="['/nhatuyendung/home']">
+            <img src="../../../../assets/image/jeejob.png" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+            <ul class="navbar-nav navbar-right" style="display: none;">
+                <li class="nav-item chose">
+                    <a class="nav-link" [routerLink]="['./']"><i class="fa fa-briefcase" aria-hidden="true"></i> Việc làm</a>
+                </li>
+                <li class="nav-item chose">
+                    <a class="nav-link" [routerLink]="['./']"><i class="fas fa-user-tie"></i> Việc làm quản lý</a>
+                </li>
+                <li class="nav-item chose">
+                    <a class="nav-link" [routerLink]="['./']"><i class="fas fa-building"></i> Công ty</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

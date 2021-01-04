@@ -1,0 +1,97 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light"  style="padding: 0;margin: 0;font-size: large;">
+    <div class="container">
+        <div class="collapse navbar-collapse ">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" [routerLink]="['./']">
+                        <small id="helpId" class="icon-info"><i class="fa fa-phone"></i> 1900 6467</small>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['./']">
+                        <small id="helpId" class="icon-info"><i class="fa fa-envelope-o"></i>searchjob.com.vn</small>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.facebook.com/thanhthang.ntt1798" target="_blank">
+                        <small id="helpId" class="icon-info"><i class="fa fa-facebook"></i></small>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['./']">
+                        <small id="helpId" class="icon-info"><i class="fa fa-skype"></i></small>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav navbar-right">
+                <li class="nav-item d-none" >
+                    <a class="nav-link" [routerLink]="['/nhatuyendung']">
+                        <small id="helpId" class="icon-info">Nhà tuyển dụng</small>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/dang-nhap-cong-ty']">
+                        <small id="helpId" class="icon-info">Nhà tuyển dụng</small>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['./']">
+                        <small id="helpId" class="icon-info"><i class="fa fa-bell-o"></i></small>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <small id="helpId" class="icon-info"><i class="fa fa-user"></i> <span> {{name}}</span></small>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <div *ngIf="!islogin,else login">
+                            <a class="dropdown-item" [routerLink]="['/dang-nhap-ung-vien']" *ngIf="!islogin">Đăng nhập</a>
+                            <a class="dropdown-item" [routerLink]="['/dang-ky-ung-vien']">Đăng ký</a>
+                        </div>
+                        <ng-template #login style="font-size:16px ;">
+                            <a class="dropdown-item" [routerLink]="['/ungvien/user']"><i class="fa fa-folder-o" aria-hidden="true"></i> Thông tin cá nhân</a>
+                            <a class="dropdown-item" [routerLink]="['/ungvien/user/viecdaluu']"><i class="far fa-heart" aria-hidden="true"></i> Việc làm đã lưu</a>
+                            <a class="dropdown-item" [routerLink]="['/ungvien/user/vieclamungtuyen']"><img src="../../../../assets/image/icon/vieclam.png" width="16px" alt=""> Việc làm đã ứng tuyển</a>
+                            <a class="dropdown-item" [routerLink]="['/ungvien/user/thong-bao-viec-lam']"><i class="fa fa-bell-o" aria-hidden="true"></i> Thông báo việc làm</a>
+                            <a class="dropdown-item" (click) = "logout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Thoát</a>
+                        </ng-template>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container">
+        <a class="navbar-brand" [routerLink]="['/ungvien']" (click)="boder=''">
+        <img src="../../../../assets/image/jeejob.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+            <ul class="navbar-nav navbar-right"style="font-size:20px">
+                <li class="nav-item chose" [ngClass]="{'boder': boder == '1'}" (click)="boder='1'">
+                    <a  class="nav-link" [routerLink]="['/ungvien/vieclam']">
+                        <img src="../../../../assets/image/icon/vieclam.png" style="vertical-align: baseline;" width="20px" alt="">    
+                    Việc làm</a>
+                </li>
+                <li class="nav-item chose" [ngClass]="{'boder': boder == '2'}" (click)="boder='2'">
+                    <a class="nav-link" [routerLink]="['/ungvien/viec-lam-quan-ly']">
+                        <img src="../../../../assets/image/icon/manager.png" style="vertical-align: baseline;" width="20px" alt=""> 
+                        Việc làm quản lý</a>
+                </li>
+                <li class="nav-item chose" [ngClass]="{'boder': boder == '3'}" (click)="boder='3'">
+                    <a class="nav-link" [routerLink]="['/ungvien/danh-sach-cong-ty']">
+                        <img src="../../../../assets/image/icon/build.png" style="vertical-align: baseline;" width="20px" alt="">
+                        Công ty</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

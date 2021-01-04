@@ -1,0 +1,438 @@
+<div *ngIf="!showdetail, else detail">
+    <div class="card tab-info">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-6">
+                    <h1>TUYỂN DỤNG</h1>
+                </div>
+                <div class="col-6">
+                    <button class="btn bg-white float-right" style="color: var(--second);" (click)="Taotinmoi()">
+                        <h4> <i class="fa fa-plus-circle" aria-hidden="true"></i> Tạo tin tuyển dụng</h4>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body" *ngIf="tintuyendung.length > 0 || tincchuaduyet.length > 0,else tintrong"
+            style="padding-bottom: 0px;">
+            <div class="item" *ngFor="let item of tintuyendung">
+                <div class="row">
+                    <div class="col-5">
+                        <h3 style="padding-bottom: 0px;" style="font-size: 20px; color: #3DC089;font-weight: 500;">
+                            {{item.tieude}}</h3>
+                        <span style="color: #555555;" *ngIf="item.thuongluong,else luong"> {{item.chucdanh}} |
+                            {{item.tenthanhpho}} |
+                            <span style="color: var(--main);">{{item.thuongluong?'Thương lượng':''}}</span> </span>
+                        <ng-template #luong>
+                            <span> {{item.chucdanh}} | {{item.tenthanhpho}} | <span style="color: #F48120;">$ Từ
+                                    {{item.minluong|number}} -
+                                    {{item.maxluong|number}}</span></span>
+                        </ng-template>
+                    </div>
+                    <div class="col-3 box">
+                        <div class="row text-center">
+                            <div class="col-6">
+                                <h6 style="color: #555555;">Ngày hết hạn</h6>
+                                <span style="color: #555555;" *ngIf="item.ngayhethan>today">
+                                    {{item.ngayhethan|date:'dd/MM/yyyy'}} </span>
+                                <span style="color: #555555;" *ngIf="item.ngayhethan<today"> Đã hết h </span>
+                            </div>
+                            <div class="col-6">
+                                <h6 style="color: #555555;">Ngày đăng</h6>
+                                <span style="color: #555555;"> {{item.ngaydang|date:'dd/MM/yyyy'}} </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="row text-center">
+                            <button *ngIf="item.trangthai != 'Đã xóa',else daxoa" (click)="SearchUV(item)" class="btn btn-outline-main">Tìm kiếm ứng viên</button>
+                            <!-- [routerLink]="['/nhatuyendung/home/thong-tin/ung-vien-da-luu']"  -->
+                            <ng-template #daxoa>
+                                <span style="margin: auto;" class="text-muted">Tin bị từ chối</span>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="float-right edit"
+                            style="font-size: 16px; color: var(--main); font-family: Helvetica;">
+                            <a>
+                                <span *ngIf="item.trangthai != 'Đã xóa'" style="color: var(--main);">
+                                    <img src="./../../../../../assets/image/pencil.png" alt="" width="16px">
+                                    Sửa</span>
+                                
+                            </a>
+                            <a [routerLink]="['./']" (click)="XoaData(item)"><i class="fa fa-trash"
+                                    style="color: var(--main);"></i><span style="color: var(--main);"> Xoá</span></a>
+                        </div>
+                    </div>
+
+                </div>
+                <hr>
+            </div>
+            <div *ngIf="tincchuaduyet.length>0">
+                <h1 style="padding-top: 10px;">Tin chờ duyệt</h1>
+                <div class="item" *ngFor="let item of tincchuaduyet">
+                    <div class="row">
+                        <div class="col-5">
+                            <h3 style="padding-bottom: 0px;" style="font-size: 20px; color: #3DC089;font-weight: 500;">
+                                {{item.tieude}}</h3>
+                            <span style="color: #555555;" *ngIf="item.thuongluong,else luong"> {{item.chucdanh}} |
+                                {{item.tenthanhpho}} |
+                                <span style="color: var(--main);">{{item.thuongluong?'Thương lượng':''}}</span> </span>
+                            <ng-template #luong>
+                                <span> {{item.chucdanh}} | {{item.tenthanhpho}} | <span style="color: #F48120;">$ Từ
+                                        {{item.minluong|number}} -
+                                        {{item.maxluong|number}}</span></span>
+                            </ng-template>
+                        </div>
+                        <div class="col-3 box">
+                            <div class="row text-center">
+                                <div class="col-6">
+                                    <h6 style="color: #555555;">Ngày hết hạn</h6>
+                                    <span style="color: #555555;" *ngIf="item.ngayhethan>today">
+                                        {{item.ngayhethan|date:'dd/MM/yyyy'}} </span>
+                                    <span style="color: #555555;" *ngIf="item.ngayhethan<today"> Đã hết h </span>
+                                </div>
+                                <div class="col-6">
+                                    <h6 style="color: #555555;">Ngày đăng</h6>
+                                    <span style="color: #555555;"> {{item.ngaydang|date:'dd/MM/yyyy'}} </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="row text-center">
+                                <button disabled (click)="SearchUV(item)" class="btn btn-outline-main">Tìm kiếm ứng
+                                    viên</button>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="float-right edit"
+                                style="font-size: 16px; color: var(--main); font-family: Helvetica;">
+                                <img src="./../../../../../assets/image/pencil.png" alt="" width="16px">
+                                <a [routerLink]="['./']" (click)="Sua(item)"><span style="color: var(--main);">
+                                        Sửa</span></a>
+                                <a [routerLink]="['./']" (click)="XoaData(item)"><i class="fa fa-trash"
+                                        style="color: var(--main);"></i><span style="color: var(--main);">
+                                        Xoá</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+        <ng-template #tintrong>
+            <div class="card-body">
+                <div class="empty text-center">
+                    <img src="../../../../../assets/image/Mask Group 26.png" alt="">
+                    <span class="text-muted d-block" style="font-size:16px">Vị trí ứng tuyển trống</span>
+                </div>
+            </div>
+        </ng-template>
+
+    </div>
+</div>
+<!-- ======================================= -->
+<!-- Thêm tin tuyển dụng -->
+<!-- ======================================= -->
+
+<ng-template #detail>
+    <div class="card tab-info">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-6">
+                    <h1>TẠO TIN TUYỂN DỤNG</h1>
+                </div>
+                <div class="col-6">
+                    <button class="btn bg-white float-right text-danger" (click)="showdetail=false">
+                        <h4 style="color: #F48120;"> <i class="fa fa-undo" aria-hidden="true"
+                                style="color: #F48120;"></i> Quay lại danh sách</h4>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <div class="row form-group">
+                    <label class="col-2">Tiêu đề <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control col-10" #tieude="ngModel" required="required" placeholder=""
+                        [(ngModel)]="tinmoi.tieude">
+                    <span style="margin-left: 17%;" *ngIf="isckeck || tieude.dirty">
+                        <span class="text-danger" *ngIf=" tieude.errors?.required">
+                            * Nhập tiêu đề
+                        </span></span>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group row">
+                            <label class="col-4" style="padding-top: 10px;">Chức danh <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control col-7 " placeholder="ví dụ: UX/UI designer"
+                                [(ngModel)]="tinmoi.chucdanh" #chucdanh="ngModel" required="required">
+                        </div>
+                        <span style="margin-left: 33%;" *ngIf="isckeck || chucdanh.dirty">
+                            <span class="text-danger" *ngIf=" chucdanh.errors?.required">
+                                * Nhập chức danh
+                            </span></span>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group row">
+                            <label class="col-4" style="padding-top: 10px;">Cấp bậc: <span
+                                    class="text-danger">*</span></label>
+                            <!-- <input type="text" class="form-control col-8" placeholder="Vui lòng chọn" [(ngModel)]="tinmoi.capbac"> -->
+                            <select [(ngModel)]="tinmoi.capbac" class="form-control col-8">
+                                <option *ngFor="let item of capbac" [value]="item.ten">{{item.ten}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-2">Ngành nghề <span class="text-danger">*</span></label>
+                    <div class=" col-10">
+                        <div class="row">
+                            <button type="button" *ngFor="let item of listCM,let i = index" style="margin: 5px 5px 0 0;"
+                                class="btn btn-sm " (click)="remove(i)">{{item.tennganh}}
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </button>
+
+                            <a style="margin: 10px 5px 0 0; color: var(--second)" data-toggle="dropdown"
+                                *ngIf="listCM.length<3">
+                                <img src="../../../../../assets/image/daucong.png" alt=""
+                                    style="vertical-align: unset;"> Thêm
+                                Ngành</a>
+                            <div class="input-group-append" *ngIf="listCM.length<3">
+                                <div class="dropdown-menu scrollable-menu" style="width:300px">
+                                    <a class="dropdown-item" *ngFor="let item of listNganh,let i = index"
+                                        (click)="addtoCM(item)">{{item.tennganh}}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <ul class="nav" data-toggle="dropdown">
+                            <li class="nav-item row text-muted" style="padding-left: 20px;" *ngIf="listCM.length==0">
+                                Vui lòng chọn
+                            </li>
+                            <li class="nav-item row" style="padding-left: 40px;"
+                                *ngFor="let item of listCM,let i = index">
+                                <button type="button" class="btn btn-sm" (click)="remove(i)">{{item.tennganh}}
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                            </li>
+                        </ul>
+                        <div class="input-group-append">
+                            <div class="dropdown-menu scrollable-menu">
+                                <a class="dropdown-item" *ngFor="let item of listNganh"
+                                    (click)="addtoCM(item)">{{item.tennganh}}</a>
+                            </div>
+                        </div> -->
+                    </div>
+                    <span style="margin-left: 17%;" *ngIf="listCM.length > 3">
+                        <span class="text-danger">
+                            * Tối đa 3 ngành
+                        </span></span>
+                    <span style="margin-left: 17%;" *ngIf="isckeck">
+                        <span class="text-danger" *ngIf="listCM.length==0">
+                            * Chọn Ngành
+                        </span></span>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group row">
+                            <label class="col-4">Ngày hết hạn <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control col-7 " placeholder=""
+                                [(ngModel)]="tinmoi.ngayhethan" #duedate="ngModel">
+                        </div>
+                        <span style="margin-left: 33%;" *ngIf="isckeck || duedate.dirty">
+                            <span class="text-danger" *ngIf=" duedate.errors?.required">
+                                * Nhập ngày hết hạn
+                            </span></span>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group row">
+                            <label class="col-4" style="padding-top: 10px;">Loại công việc <span
+                                    class="text-danger">*</span></label>
+                            <select class="form-control col-8" [(ngModel)]="tinmoi.idLoaicongviec">
+                                <option [value]=0 disabled>Vui lòng chọn</option>
+                                <option [value]="item.idLoaicongviec" *ngFor="let item of listLoaicongviec">
+                                    {{item.tenloaicongviec}}</option>
+                            </select>
+                            <span class="text-danger" style="margin-left: 33%;"
+                                *ngIf="isckeck && tinmoi.idLoaicongviec==0">
+                                * Nhập chức danh</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-2">Mô tả <span class="text-danger">*</span></label>
+                    <textarea rows="3" type="text" class="form-control col-10 " placeholder="" #mota="ngModel"
+                        required="required" [(ngModel)]="tinmoi.motacongviec"></textarea>
+                    <span class="text-danger" style="margin-left: 17%;" *ngIf="isckeck || mota.dirty">
+                        <span class="text-danger" *ngIf=" mota.errors?.required">
+                            * Nhập mô tả công việc
+                        </span></span>
+                </div>
+                <div class="row form-group">
+                    <label class="col-2">Yêu cầu công việc: <span class="text-danger">*</span></label>
+                    <textarea rows="3" type="text" class="form-control col-10 " #yeucau="ngModel" required="required"
+                        placeholder="" [(ngModel)]="tinmoi.yeucaucongviec"></textarea>
+                    <span class="text-danger" style="margin-left: 17%;" *ngIf="isckeck || yeucau.dirty">
+                        <span class="text-danger" *ngIf=" yeucau.errors?.required">
+                            * Nhập nội dung yêu cầu
+                        </span></span>
+                </div>
+                <div class="row form-group">
+                    <label class="col-2">Kỹ năng <span class="text-danger">*</span></label>
+                    <textarea rows="3" type="text" class="form-control col-10 " #kynang="ngModel" required="required"
+                        placeholder="" [(ngModel)]="tinmoi.yeucaukynang"></textarea>
+                    <span class="text-danger" style="margin-left: 17%;" *ngIf="isckeck || kynang.dirty">
+                        <span class="text-danger" *ngIf=" kynang.errors?.required">
+                            * Nhập kỹ năng yêu cầu
+                        </span></span>
+                </div>
+                <div class="row form-group">
+                    <label class="col-2">Mức lương <span class="text-danger">*</span></label>
+                    <div class="col-10">
+                        <div class="row">
+                            <input type="number" class="col-4 form-control" placeholder="Mức lương tối thiểu"
+                                [(ngModel)]="tinmoi.minluong" [disabled]="tinmoi.thuongluong">
+                            <label class="col-1"></label>
+
+                            <input type="number" class="col-4 form-control" placeholder="Mức lương tối đa"
+                                [(ngModel)]="tinmoi.maxluong" [disabled]="tinmoi.thuongluong">
+                            <div class="col-6" style="padding: 5px 20px;">
+                                <input type="checkbox" class="form-check-input" value=""
+                                    [(ngModel)]="tinmoi.thuongluong">
+                                <span>Thương lượng</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group row">
+                            <label class="col-4" style="padding-top: 10px;">Người liên hệ <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control col-7 " #nlh="ngModel" required="required"
+                                placeholder="" [(ngModel)]="tinmoi.nguoilienhe">
+                            <span class="text-danger" style="margin-left: 33%;" *ngIf="isckeck || nlh.dirty">
+                                <span class="text-danger" *ngIf=" nlh.errors?.required">
+                                    * Nhập người liên hệ
+                                </span></span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group row">
+                            <label class="col-4" style="padding-top: 10px;">Số điện thoại liên hệ <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control col-7 " placeholder="" [(ngModel)]="tinmoi.sdtlienhe"
+                                #sdt="ngModel" required="required">
+                            <span class="text-danger" style="margin-left: 33%;" *ngIf="isckeck || sdt.dirty">
+                                <span class="text-danger" *ngIf=" sdt.errors?.required">
+                                    * Nhập số điện thoại người liên hệ
+                                </span></span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group row">
+                            <label class="col-4" style="padding-top: 10px;">Địa chỉ nhận email <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control col-8" placeholder=""
+                                [(ngModel)]="tinmoi.emaillienhe" #email="ngModel" required="required">
+                            <span class="text-danger" style="margin-left: 33%;" *ngIf="isckeck || email.dirty">
+                                <span class="text-danger" *ngIf=" email.errors?.required">
+                                    * Nhập email liên hệ
+                                </span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-2">Địa điểm làm việc <span class="text-danger">*</span></label>
+                    <select class="form-control col-9" [(ngModel)]="tinmoi.idDiadiemlamviec">
+                        <option value=0 disabled>Chọn địa điểm làm việc</option>
+                        <option *ngFor="let item of listDiadiemlamviec" [value]="item.idDiadiemlamviec">{{item.diachi}}
+                        </option>
+                    </select>
+                    <button class="btn col-1 bg-white" data-toggle="modal" data-target="#exampleModal"><i
+                            class="fa fa-plus-square" style="font-size:150% ;" aria-hidden="true"></i></button>
+                </div>
+                <span class="text-danger" style="margin-left: 17%;" *ngIf="isckeck">
+                    <span class="text-danger" *ngIf=" tinmoi.idDiadiemlamviec == 0">
+                        * Chọn địa điểm làm việc
+                    </span></span>
+                <!-- <div class="form-group">
+                    <span class="col-6 text-muted">Phúc lợi công ty</span>
+                    <div class="row">
+                        <div class="col-4" style="padding: 10px;" *ngFor="let item of phucloi" (click)="chonPL(item)">
+                            <img [src]="getIcon(item.idPhucloi)" style="margin: 0 5px 0px 0px;"
+                                [ngStyle]="{'filter':checked(item) == true ? '':'grayscale(100%)' }" alt="">
+                            <span
+                                [ngStyle]="{'color':checked(item) == true ? 'var(--second)':'' }">{{item.tenphucloi}}</span>
+                            <span style="color: var(--second);float: right;" *ngIf="checked(item)"><i
+                                    class="fa fa-check" aria-hidden="true"></i> </span>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <hr>
+            <div class="float-right submit">
+                <button type="submit" class="btn btn-main" (click)="isckeck=true;Themtinmoi()">Lưu</button>
+                <button type="button" class="btn btn-outline-main" (click)="resest()">Hủy</button>
+            </div>
+
+        </div>
+
+    </div>
+</ng-template>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form class="modal-content" #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Thêm địa điểm làm việc</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6 ">
+                        <div class="form-group row">
+                            <div class="col-4">Thành phố </div>
+                            <select class="form-control col-8" #city="ngModel" [(ngModel)]="tpModal"
+                                [ngModelOptions]="{standalone: true}">
+                                <option value=0 disabled>Chọn thành phố</option>
+                                <option *ngFor="let item of tp" [value]="item.idThanhpho">{{item.tenthanhpho}}</option>
+                            </select>
+                            <div class="col-4"></div>
+                            <span class="text-danger" *ngIf="f.submitted">
+                                <span class="text-danger" *ngIf="city.value==0">
+                                    Please enter your city
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">Địa chỉ </div>
+                    <input type="text" class="col-10 form-control" required="required" name="diachi" ngModel
+                        #address="ngModel">
+                    <div class="col-2"></div>
+                    <span class="text-danger" *ngIf="f.submitted">
+                        <span class="text-danger" *ngIf="address.errors?.required">
+                            * Please enter your address
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-main" data-dismiss="modal">Đóng</button>
+                <button type="submit" class="btn btn-outline-main">Lưu</button>
+            </div>
+        </form>
+    </div>
+</div>

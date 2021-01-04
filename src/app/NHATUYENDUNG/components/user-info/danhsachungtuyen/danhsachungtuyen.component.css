@@ -1,0 +1,46 @@
+.edit{
+    padding-top: 20px;
+    font-size: 20px;
+}
+
+.edit a{
+    margin-right: 30px;
+    color: tomato;
+}
+
+.edit i:hover{
+    transform: scale(1.2);
+}
+.tab-info{
+    margin-top: 15px;
+}
+.col-4{
+    color: #555555;
+    font-size: 16px;
+}
+
+
+.ntdmoi{
+    position: absolute;
+    z-index: 10;
+    color: red;
+  }
+  .ntdmoi span {
+    font-size: 12px;
+    color: #FFF;
+    text-align: center;
+    line-height: 20px;
+    transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    width: 75px;
+    display: block;
+    background: #F7941D;
+    box-shadow: 0 3px 10px -5px #000;
+    position: absolute;
+    top: 15px;
+    left: -15px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+  

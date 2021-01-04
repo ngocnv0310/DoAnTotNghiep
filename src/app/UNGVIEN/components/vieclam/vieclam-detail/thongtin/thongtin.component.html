@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-9">
+        <div class="content">
+            <h2>Mô tả công việc</h2>
+            <p>{{tintuyendung.motacongviec}}</p>
+        </div>
+        <div class="content">
+            <h2>Yêu cầu công việc</h2>
+            <p>{{tintuyendung.yeucaucongviec}}</p>
+        </div>
+        <div class="content">
+            <h2>Yêu cầu kĩ năng</h2>
+            <p>{{tintuyendung.yeucaukynang}}</p>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card-body box" style="padding: 10px;">
+            <div class="item border-bottom">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="../../../../../../assets/image/date.png" alt="">
+                    </div>
+                    <div class="col-10">
+                        <label class="text-muted"> <small>NGÀY ĐĂNG - NGÀY HẾT HẠN</small></label>
+                        <label> {{tintuyendung.ngaydang | date : 'dd/MM/yyyy' }} -
+                            {{tintuyendung.ngayhethan | date : 'dd/MM/yyyy' }} </label>
+                    </div>
+                </div>
+            </div>
+            <div class="item border-bottom">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="../../../../../../assets/image/capbac.png" alt="">
+                    </div>
+                    <div class="col-10">
+                        <label class="text-muted d-block">CẤP BẬC</label>
+                        <label> {{tintuyendung.capbac}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="item border-bottom">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="../../../../../../assets/image/nganhnghe.png" alt="">
+                    </div>
+                    <div class="col-10">
+                        <label class="text-muted d-block"> NGÀNH NGHỀ</label>
+                        <label> {{nganh}}</label>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="item border-bottom">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="../../../../../../assets/image/skill.png" alt="">
+                    </div>
+                    <div class="col-10">
+                        <label class="text-muted d-block"> KỸ NĂNG</label>
+                        <label> {{tintuyendung.capbac}}</label>
+                    </div>
+                </div>
+            </div> -->
+            <div class="item border-bottom">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="../../../../../../assets/image/ngonngu.png" alt="">
+                    </div>
+                    <div class="col-10">
+                        <label class="text-muted d-block"> NGÔN NGỮ NHẬN HỒ SƠ</label>
+                        <label> Tất cả ngôn ngữ</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+.head{
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.head a{
+    color: #2E64FE;
+}
+.video{
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 5px 15px;
+    border: solid 1px #ccc;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color .6s ease;
+  }
+  
+  .active, .dot:hover {
+    background-color: var(--second);
+  }
+  

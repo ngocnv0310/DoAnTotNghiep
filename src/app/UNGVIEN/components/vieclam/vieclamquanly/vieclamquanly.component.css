@@ -1,0 +1,157 @@
+.head{
+    min-height: 180px;
+    background-image: url(../../../../../assets/image/header-second.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.text{
+    color: white;
+    text-align: center;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-25%);
+}
+.work-item {
+    width: 100%;
+    padding: 5px;
+    border-bottom: #ccc 1px solid;
+}
+
+.logo {
+    width: 90%;
+    outline: white solid 5px;
+}
+
+.work-item .info {
+    min-height: 100px;
+}
+
+.list-job {
+    background-color: white;
+}
+
+.icon i {
+    color: gray;
+}
+
+.icon i:hover {
+    transform: scale(1.1);
+    color: var(--main);
+}
+
+.info{
+    font-family: Helvetica;
+    
+}
+
+.info a{
+    font-size: 20px;
+    margin: 10px 0 5px 0px;
+    color: #111111;
+}
+
+.icon i:active {
+    transform: scale(1.2);
+    color: blue
+}
+
+.info a{
+    font-weight: 400;
+    display: block;
+}
+
+.info a:hover{
+    text-decoration: none;
+}
+
+  
+  .has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+.confim{
+    padding: 0px 20px 20px 0;
+
+}
+
+.badge{
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 55%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    /* white-space: nowrap; */
+    /* vertical-align: baseline; */
+    border-radius: 0;
+    vertical-align: text-top;
+}
+
+.luong{
+    float: right;
+    text-align: right;
+}
+
+.dropdown-item:active{
+    background-color: var(--second);
+}
+.save{
+    position: absolute;
+    font-size: 20px;
+    right: 0;
+    bottom: 10px;
+    color: #ccc;
+}
+
+.save:hover{
+    color: var(--main);
+}
+
+div.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    font-size: 20px;
+}
+
+.pagination>li>a {
+    margin: 0 2px;
+    font-size: 20px;
+    padding: 13px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
+
+.pagination>li>a:hover{
+   color: tomato;
+}
+
+.pagination-lg>li>a, .pagination-lg>li>span {
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.phantrang{
+    margin-top: 20px;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #00b9f2;
+    border-color: #00b9f2;
+}

@@ -1,0 +1,140 @@
+<nav class="navbar navbar-light bg-white" style="padding: 10px;">
+    <div class="container">
+        <a class="navbar-brand" [routerLink]="['/']">
+            <img src="./../../../../assets/image/jeejob.png" class="w-75" alt="">
+        </a>
+    </div>
+</nav>
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <div class="card-body" style="padding-top: 0;">
+                    <div class="  w-75" style="margin-left:12.5%">
+                        <div id="carouselExampleControls" class=" carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="./../../../../assets/image/pannel.jpg"
+                                        alt="First slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="./../../../../assets/image/pannel1.jpg"
+                                        alt="Second slide">
+                                </div>
+                            </div>
+                        </div>
+                        <p
+                            style="margin-top: 10px; font-size: 16px;font-family: Roboto, Arial, sans-serif;text-align: justify">
+                            Năm 2020, hành trình kiến tạo giấc mơ của chúng tôi được tiếp thêm sức mạnh khi <span
+                                style="color: var(--second);">JEEJOB</span>
+                            vinh dự trở thành website tuyển dụng lớn mạnh, một tập đoàn chuyên về các dịch vụ liên quan
+                            đến ngành nhân sự, từ đó tạo thêm nhiều bứt phá mới trên thị trường khi tiếp tục cho ra đời
+                            PRIMUS, một dịch vụ tuyển
+                            dụng mới dành riêng cho nhóm nhân sự cấp cao lương trên $3000, và nhiều dịch vụ khác trong
+                            thời gian sắp tới.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 card box">
+                <h3>Đăng ký tài khoản</h3>
+                <p class="text-center">Hơn 1 triệu ứng viên tìm được việc làm mơ ước trên JeeJob</p>
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label style="color: #B3B3B3;">Tên</label>
+                        <input class="form-control" placeholder="vd: Văn A" #txtname="ngModel" minlength="6"
+                            required="required" type="text" [(ngModel)]="ungvien.ten">
+                        <span *ngIf="txtname.dirty || clicked">
+                            <span class="text-danger" *ngIf="txtname.errors?.required">
+                                * Nhập tên
+                            </span>
+                        </span>
+                    </div>
+                    <div class="form-group col-6">
+                        <label style="color: #B3B3B3;">Họ</label>
+                        <input class="form-control" placeholder="vd: Nguyễn" #txtho="ngModel" minlength="6"
+                            required="required" type="text" [(ngModel)]="ungvien.ho">
+                        <span *ngIf="txtho.dirty || clicked">
+                            <span class="text-danger" *ngIf="txtho.errors?.required">
+                                * Nhập họ
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label style="color: #B3B3B3;">Email</label>
+                    <input class="form-control" placeholder="nguyenvana@gmail.com" #txtemail="ngModel" minlength="6"
+                        required="required" type="email" [(ngModel)]="ungvien.email"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                    <span *ngIf="txtemail.dirty || clicked">
+                        <span class="text-danger" *ngIf="txtemail.errors?.pattern">
+                            *Nhập đúng định dạng email!
+                        </span>
+                        <span class="text-danger" *ngIf="txtemail.errors?.required">
+                            * Email không được để trống
+                        </span>
+                    </span>
+                </div>
+                <div class="form-group ">
+                    <label style="color: #B3B3B3;">Mật khẩu</label>
+                    <input class="form-control" placeholder="*****" #txtpass="ngModel" minlength="6" required="required"
+                        type="password" [(ngModel)]="ungvien.matkhau">
+                    <span *ngIf="txtpass.dirty || clicked">
+                        <span class="text-danger" *ngIf="txtpass.errors?.minlength">
+                            * Nhập tối thiểu 6 ký tự
+                        </span>
+                        <span class="text-danger" *ngIf="txtpass.errors?.required">
+                            * Mật khẩu không được trống
+                        </span>
+                    </span>
+                </div>
+                <p style="color: #B3B3B3;">Từ 6 đến 50 ký tự, 1 chữ hoa, 1 số.</p>
+
+                <div class="form-group ">
+                    <label style="color: #B3B3B3;">Xác nhận mật khẩu</label>
+                    <input class="form-control" placeholder="*****" minlength="6" required="required" type="password"
+                        #repasss>
+                </div>
+                <div *ngIf="isSigup">
+                    <label style="color: #B3B3B3;">Nhập mã OTP</label>
+                    <div class="form-group">
+                        <input style="display: inline;" class="form-control" type="text" [(ngModel)]="maxacthuc">
+                    </div>
+                </div>
+                <small class="text-danger">{{code}}</small>
+                <span>Nếu bạn có <span style="font-weight: bold;">nhu cầu tuyển dụng</span>, vui lòng<a
+                        [routerLink]="['/dang-ky-cong-ty']"> Đăng ký tại đây!</a></span>
+
+                <button class="btn" *ngIf="!isSigup" (click)="Dangky(txtname,txtho,txtemail,txtpass,repasss.value)">Đăng
+                    Ký</button>
+                <button class="btn" *ngIf="isSigup" (click)="Confirm()">Xác thực</button>
+                <span class="text-center">Bạn là thành viên JeeJob?<a [routerLink]="['/dang-nhap-ung-vien']"> Đăng
+                        nhập</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white" style="padding: 20px;">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="./../../../../assets/image/jeejob.png" alt="">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Về DPS <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Liên hệ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Thoả thuận sử dụng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Quy định bảo mật</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

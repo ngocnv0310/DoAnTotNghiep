@@ -1,0 +1,301 @@
+<div class="header">
+  <div class="container" style="padding-top: 20px;">
+    <h3>CÔNG TY</h3>
+    <p class="cap">Tìm hiểu văn hoá công ty và chọn cho bạn nơi làm việc phù hợp nhất.</p>
+    <div class="row">
+      <select class="col-3 form-control input" #nganhs>
+        <option value="">Tất cả ngành nghề</option>
+        <option [value]="item.idNganh" *ngFor="let item of nganh">{{item.tennganh}}</option>
+      </select>
+      <select class="col-3 form-control input" #khuvucs>
+        <option value="">Tất cả khu vực</option> 
+        <option [value]="item.idThanhpho" *ngFor="let item of khuvuc">{{item.tenthanhpho}}</option>
+      </select>
+      <input #textQuery type="text" placeholder="Tên công ty" class="col-3 form-control input">
+      <button class="btn btn-main" (click)= "searchCongty(nganhs.value,khuvucs.value,textQuery.value)" >Tìm kiếm</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================== -->
+<!-- Công ty đang tuyển dụng -->
+<section #congtydangtuyendung>
+  <div class="main">
+    <div class="container noidung">
+      <h1>Các công ty đang tuyển dụng</h1>
+      <div id="demo" class="carousel slide" data-interval="false">
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row bg-white">
+              <div class="col-4" *ngFor="let item of list1" (click)="Xemntd(item)">
+                <div class="card">
+                  <div class="banner" style="background-image: #F1F1F1;">
+                    <img class="card-img-top" style="max-width: 100%;height: 200px;"
+                      [src]="createImgPath(item.bannercongty)" alt="Card image cap">
+                  </div>
+                  <div class="card-body hidetext">
+                    <div class="row">
+                      <div class="col-9">
+                        <p class="ten-congty">{{item.tencongty}}</p>
+                        <p class="card-text ">{{item.gioithieucongty}}</p>
+                      </div>
+                      <div class="col-3 text-right" style="font-size: 16px;">
+                        <i class="far fa-eye"></i>
+                        <span class="d-block"> {{item.luotxem}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row bg-white">
+              <div class="col-4" *ngFor="let item of list1">
+                <div class="card">
+                  <div class="banner" style="background-image: #F1F1F1;">
+                    <img class="card-img-top" style="max-width: 100%;height: 200px;"
+                      [src]="createImgPath(item.bannercongty)" alt="Card image cap">
+                  </div>
+                  <div class="card-body hidetext">
+                    <div class="row">
+                      <div class="col-9">
+                        <p class="ten-congty">{{item.tencongty}}</p>
+                        <p class="card-text ">{{item.gioithieucongty}}</p>
+                      </div>
+                      <div class="col-3 text-right" style="font-size: 16px;">
+                        <i class="far fa-eye"></i>
+                        <span class="d-block"> {{item.luotxem}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row bg-white">    
+              <div class="col-4" *ngFor="let item of list1" (click)="Xemntd(item)">
+                <div class="card">
+                  <div class="banner" style="background-image: #F1F1F1;">
+                    <img class="card-img-top" style="max-width: 100%;height: 200px;"
+                      [src]="createImgPath(item.bannercongty)" alt="Card image cap">
+                  </div>
+                  <div class="card-body hidetext">
+                    <div class="row">
+                      <div class="col-9">
+                        <p class="ten-congty">{{item.tencongty}}</p>
+                        <p class="card-text ">{{item.gioithieucongty}}</p>
+                      </div>
+                      <div class="col-3 text-right" style="font-size: 16px;">
+                        <i class="far fa-eye"></i>
+                        <span class="d-block"> {{item.luotxem}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- The dots/circles -->
+        <ul class="carousel-indicators position-relative" style="bottom: -15px;">
+          <li data-target="#demo" class="dot active" (click)="indexCongtymoi=1;;Congtymoi()" data-slide-to="0"></li>
+          <li data-target="#demo" class="dot" (click)="indexCongtymoi=2;Congtymoi()" data-slide-to="1"></li>
+          <li data-target="#demo" class="dot" (click)="indexCongtymoi=3;Congtymoi()" data-slide-to="2"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- congtyungtuyennhieu -->
+<!-- ============================================== -->
+
+<section #congtyungtuyennhieu>
+  <div class="main">
+    <div class="container noidung">
+      <h1>Công ty có nhiều lượt quan tâm</h1>
+      <div id="tuyendungnhieu" class="carousel slide" data-interval="false">
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row bg-white">
+              <div class="col-4" *ngFor="let item of list2" (click)="Xemntd(item)">
+                <div class="card">
+                  <div class="banner" style="background-image: #F1F1F1;">
+                    <img class="card-img-top" style="max-width: 100%;height: 200px;"
+                      [src]="createImgPath(item.bannercongty)" alt="Card image cap">
+                  </div>
+                  <div class="card-body hidetext">
+                    <div class="row">
+                      <div class="col-9">
+                        <p class="ten-congty">{{item.tencongty}}</p>
+                        <p class="card-text ">{{item.gioithieucongty}}</p>
+                      </div>
+                      <div class="col-3 text-right" style="font-size: 16px;">
+                        <i class="far fa-eye"></i>
+                        <span class="d-block"> {{item.luotxem}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row bg-white">
+              <div class="col-4" *ngFor="let item of list2" (click)="Xemntd(item)">
+                <div class="card">
+                  <div class="banner" style="background-image: #F1F1F1;">
+                    <img class="card-img-top" style="max-width: 100%;height: 200px;"
+                      [src]="createImgPath(item.bannercongty)" alt="Card image cap">
+                  </div>
+                  <div class="card-body hidetext">
+                    <div class="row">
+                      <div class="col-9">
+                        <p class="ten-congty">{{item.tencongty}}</p>
+                        <p class="card-text ">{{item.gioithieucongty}}</p>
+                      </div>
+                      <div class="col-3 text-right" style="font-size: 16px;">
+                        <i class="far fa-eye"></i>
+                        <span class="d-block"> {{item.luotxem}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row bg-white">
+              <div class="col-4" *ngFor="let item of list2" (click)="Xemntd(item)">
+                <div class="card">
+                  <div class="banner" style="background-image: #F1F1F1;">
+                    <img class="card-img-top" style="max-width: 100%;height: 200px;"
+                      [src]="createImgPath(item.bannercongty)" alt="Card image cap">
+                  </div>
+                  <div class="card-body hidetext">
+                    <div class="row">
+                      <div class="col-9">
+                        <p class="ten-congty">{{item.tencongty}}</p>
+                        <p class="card-text ">{{item.gioithieucongty}}</p>
+                      </div>
+                      <div class="col-3 text-right" style="font-size: 16px;">
+                        <i class="far fa-eye"></i>
+                        <span class="d-block"> {{item.luotxem}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- The dots/circles -->
+        <ul class="carousel-indicators position-relative" style="bottom: -15px;">
+          <li data-target="#tuyendungnhieu" class="dot active" (click)="indexlist=1;;onchange()" data-slide-to="0"></li>
+          <li data-target="#tuyendungnhieu" class="dot" (click)="indexlist=2;onchange()" data-slide-to="1"></li>
+          <li data-target="#tuyendungnhieu" class="dot" (click)="indexlist=3;onchange()" data-slide-to="2"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- congtyungtuyennhieu -->
+<!-- ============================================== -->
+
+<section #congtynhieubaidang>
+  <div class="main">
+    <div class="container noidung">
+      <h1>Các công ty có nhiều bài đăng</h1>
+      <div id="topCt" class="carousel slide" data-interval="false">
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row bg-white">
+              <div class="col-4" *ngFor="let item of list3" (click)="Xemntd(item)">
+                <div class="card">
+                  <div class="banner" style="background-image: #F1F1F1;">
+                    <img class="card-img-top" style="max-width: 100%;height: 200px;"
+                      [src]="createImgPath(item.bannercongty)" alt="Card image cap">
+                  </div>
+                  <div class="card-body hidetext">
+                    <div class="row">
+                      <div class="col-9">
+                        <p class="ten-congty">{{item.tencongty}}</p>
+                        <p class="card-text ">{{item.gioithieucongty}}</p>
+                      </div>
+                      <div class="col-3 text-right" style="font-size: 16px;">
+                        <i class="far fa-eye"></i>
+                        <span class="d-block"> {{item.luotxem}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row bg-white">
+              <div class="col-4" *ngFor="let item of list3" (click)="Xemntd(item)">
+                <div class="card">
+                  <div class="banner" style="background-image: #F1F1F1;">
+                    <img class="card-img-top" style="max-width: 100%;height: 200px;"
+                      [src]="createImgPath(item.bannercongty)" alt="Card image cap">
+                  </div>
+                  <div class="card-body hidetext">
+                    <div class="row">
+                      <div class="col-9">
+                        <p class="ten-congty">{{item.tencongty}}</p>
+                        <p class="card-text ">{{item.gioithieucongty}}</p>
+                      </div>
+                      <div class="col-3 text-right" style="font-size: 16px;">
+                        <i class="far fa-eye"></i>
+                        <span class="d-block"> {{item.luotxem}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row bg-white">
+              <div class="col-4" *ngFor="let item of list3" (click)="Xemntd(item)">
+                <div class="card">
+                  <div class="banner" style="background-image: #F1F1F1;">
+                    <img class="card-img-top" style="max-width: 100%;height: 200px;"
+                      [src]="createImgPath(item.bannercongty)" alt="Card image cap">
+                  </div>
+                  <div class="card-body hidetext">
+                    <div class="row">
+                      <div class="col-9">
+                        <p class="ten-congty">{{item.tencongty}}</p>
+                        <p class="card-text ">{{item.gioithieucongty}}</p>
+                      </div>
+                      <div class="col-3 text-right" style="font-size: 16px;">
+                        <i class="far fa-eye"></i>
+                        <span class="d-block"> {{item.luotxem}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- The dots/circles -->
+        <ul class="carousel-indicators position-relative" style="bottom: -15px;">
+          <li data-target="#topCt" class="dot active" (click)="indexhot=1;Congtyhot()" data-slide-to="0"></li>
+          <li data-target="#topCt" class="dot" (click)="indexhot=2;Congtyhot()" data-slide-to="1"></li>
+          <li data-target="#topCt" class="dot" (click)="indexhot=3;Congtyhot()" data-slide-to="2"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,194 @@
+<div class="row">
+    <div class="col-8">
+
+        <div id="cvo-body" >
+            <div id="row">
+                <div id="col-left">
+                    <div id="group-top-left">
+                        <div id="cvo-profile" class="cvo-block">
+                            <div id="profile-title-wrapper">
+                                <div id="cvo-profile-avatar-wraper">
+                                    <!-- <img  [src]="createImgPath(user.hinhanh)" alt="logo-user"> -->
+                                    <img id="cvo-profile-avatar" *ngIf="!user.sociallogin" [src]="createImgPath(user.hinhanh)" alt="logo-user">
+                                    <img id="cvo-profile-avatar" *ngIf="user.sociallogin" src="{{ user.hinhanh }}" alt="logo-user">
+                                </div>
+                                <div style="padding-top: 5px;">
+                                    <span id="cvo-profile-fullname">{{user.ho}}
+                                        {{user.ten}}</span><br>
+                                    <span id="cvo-profile-title">{{user.vitriungtuyen}}</span>
+                                </div>
+                            </div>
+                            <div id="profile-contact-wraper">
+                                <div id="cvo-profile-dob-wraper">
+                                    <i class="fa fa-calendar"></i><span
+                                        id="cvo-profile-dob">{{user.ngaysinh |date:'dd/MM/yyyy'}}</span>
+                                </div>
+                                <div id="cvo-profile-gender-wraper"><i class="fa fa-user"></i><span
+                                        id="cvo-profile-gender">{{user.gioitinh==1?'Nam':'Nữ'}}</span></div>
+                                <div id="cvo-profile-phone-wraper"><i class="fa fa-phone"></i><span
+                                        id="cvo-profile-phone">{{user.sdt}}</span></div>
+                                <div id="cvo-profile-email-wraper"><i class="fa fa-envelope-square"></i><span
+                                        id="cvo-profile-email">{{user.email}}</span></div>
+                                <div id="cvo-profile-address-wraper"><i class="fa fa-map-marker"></i><span
+                                        id="cvo-profile-address">{{user.tenthanhpho}}</span>
+                                </div>
+                            </div>
+                            <div style="clear: both"></div>
+                        </div>
+                    </div>
+
+                    <div id="group-bottom-left">
+                        <div id="cvo-objective" class="cvo-block">
+                            <div class="cvo-block-title no-horizontal-line"><span id="cvo-objective-blocktitle">Mục tiêu
+                                    nghề nghiệp:</span>
+                            </div>
+                            <div id="cvo-objective-objective">
+                                {{user.muctieunghenghiep?user.muctieunghenghiep:'Chưa cập nhật'}}
+                            </div>
+                        </div>
+                        <div id="cvo-skillrate" class="cvo-block">
+                            <div class="cvo-block-title"><span id="cvo-skillrate-blocktitle">Kỹ
+                                    năng cá nhân:</span></div>
+                            <div id="skillrate-table">
+                                <div class="row" *ngFor="let item of kynangcanhan">
+                                    <div><span class="cvo-skillrate-title">{{item.tenkynang}}: </span></div>
+                                    <div class="cvo-skillrate-bar" bval="4" rate-value="4">
+                                        <span class="cvo-skillrate-value">{{item.motakynang}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="col-right">
+                    <div id="group-col-right">
+                        <div id="cvo-education" class="cvo-block">
+                            <div class="cvo-block-title">
+                                <span><i class="fa fa-graduation-cap"></i></span>
+                                <span id="cvo-education-blocktitle">Giáo dục</span>
+                            </div>
+                            <div id="education-table">
+                                <div class="item" *ngFor="let item of bangcaps">
+                                    <div class="thongtin">
+                                        <p style="font-size: 16px;">
+                                            <span class="education-school">{{item.tentruong}}</span><br>
+                                            <small>({{item.ngaybatdau|date:'MM/yyyy'}} -
+                                                {{item.ngayketthuc|date:'MM/yyyy'}})</small><br>
+                                            <span class="cvo-education-title">Chuyên ngành:
+                                                {{item.chuyennganh}}</span><br>
+                                            <span>{{item.ghichu}} </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="cvo-experience" class="cvo-block">
+                            <div class="cvo-block-title"><span><i class="fa fa-briefcase"></i></span><span
+                                    id="cvo-experience-blocktitle">Kinh nghiệm làm việc</span>
+                            </div>
+                            <div id="experience-table">
+                                <div class="item" *ngFor="let item of kinhnghiems">
+                                    <div class="row-title">
+                                        <div class="cvo-experience-company-wraper">
+                                            <span class="cvo-experience-company">{{item.tencongty}}</span>
+                                        </div>
+                                        <div class="cvo-experience-time">
+                                            <span
+                                                class="cvo-experience-start">{{item.thoigianbatdau | date: 'MM/yyyy'}}</span>
+                                            -
+                                            <span
+                                                class="cvo-experience-end">{{item.thoigianketthuc  | date: 'MM/yyyy'}})</span>
+                                        </div>
+                                        <div>
+                                            <span class="cvo-experience-position">
+                                                {{item.chucvu}} {{item.chucdanh}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row-details">
+                                        <div class="cvo-experience-details">
+                                            <span>{{item.ghichu}}</span></div>
+                                    </div>
+                                    <div style="clear:both;"></div>
+                                    <br>
+                                </div>
+
+                            </div>
+                            <div style="clear: both"></div>
+                        </div>
+                        <div class="cvo-block" id="cvo-additional-info">
+                            <div class="cvo-block-title"><span><i class="fa fa-pencil"></i></span><span
+                                    id="cvo-additional-info-blocktitle">THÔNG TIN CHUNG</span>
+                            </div>
+                            <div id="cvo-additional-information-details">
+                                {{user.mota}}
+                            </div>
+                        </div>
+                        <div class="cvo-block" id="cvo-additional-language">
+                            <div class="cvo-block-title"><span><i class="fa fa-pencil"></i></span><span
+                                    id="cvo-additional-info-blocktitle">NGOẠI NGỮ</span></div>
+                            <div id="cvo-additional-information-details">
+                                <div class="item thongtin" *ngFor="let item of ngoaingus">
+                                    <span class="education-school">{{item.tenngoaingu}}:</span>
+                                    <span *ngIf="!item.coban;else coban">
+                                        <span style="font-size: 16px;" *ngIf="item.nghe">Nge
+                                        </span>
+                                        <span style="font-size: 16px;" *ngIf="item.noi">Nói
+                                        </span>
+                                        <span style="font-size: 16px;" *ngIf="item.doc">Đọc
+                                        </span>
+                                        <span style="font-size: 16px;" *ngIf="item.viet">Viết
+                                        </span>
+                                    </span>
+                                    <ng-template #coban>
+                                        <span style="font-size: 16px;">Cơ bản</span>
+                                    </ng-template>
+                                    <p style="font-size: 16px;">Ghi chú: {{item.ghichu}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <div class="col-4" style="padding: 0 20px;">
+        <div id="candidate-viewer-sidebar-content">
+            <div id="action-box">
+                <div class="text-center">
+                   <h1>Bạn có muốn</h1>
+                </div>
+                <div class="action-list">
+                    <a [href]=sendEmail(user.email) class="action"><i class="fa fa-envelope"></i> Email mời ứng tuyển</a>
+                    <a [routerLink]="['./']" *ngIf="!daluu" (click)="luuungvien()" id="btn-follow-candidate" class="action"><i class="fa fa-user-plus"></i> Lưu vào
+                        danh sách theo dõi
+                        
+                    </a>
+                    <a *ngIf="daluu" (click)="luuungvien()" style="color: var(--second);" id="btn-follow-candidate" class="action"><i class="fa fa-user-plus"></i> Ứng viên đã lưu vào danh sách theo dõi
+                        <i class="fa fa-check float-right" aria-hidden="true"></i>
+                    </a>
+                    <a [href]="createImgPath(user.urlCv)"
+                        id="btn-download-candidate" target="_blank" download="" class="action"><i
+                            class="fa fa-download"></i> Xem CV ứng viên đính kèm
+                    </a>
+                </div>
+            </div>
+            <div class="text-center">
+                <div style="margin-top: 15px; margin-bottom: 10px; line-height: 25px;"><span
+                        class="candidate-last-update-time">
+                        Cập nhật cuối: {{user.ngaytao | date:'dd/MM/yyyy'}}
+                        <br>
+                        <span><i class="fa fa-check"></i> Trạng thái: {{user.trangthai?user.trangthai:'Chưa cập nhật'}}
+                        </span></span></div>
+            </div>
+            <div class="text-center">
+                <button class="text-center btn btn-outline-secondary" (click)="this.location.back()"
+                    style="padding: 5px; margin-top: 15px; margin-bottom: 30px;"><i class="fa fa-times"></i> Đóng
+                    lại</button>
+            </div>
+        </div>
+    </div>
+</div>

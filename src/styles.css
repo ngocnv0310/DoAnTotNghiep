@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+
+.main {
+    background-color: #FAFAFA;
+    padding: 20px;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Helvetica, "Helvetica Neue", sans-serif;
+}
+
+:root {
+    --main: #F48120;
+    --second: #3DC089;
+}
+
+.text-main{
+    color: #F48120;
+}
+.text-second{
+    color: #3DC089;
+}
+
+.btn-main {
+    color: #fff;
+    background-color: var(--main);
+}
+
+.btn-main:hover {
+    color: #fff;
+    background-color: #e27a21;
+    border-color: #e27a21;
+}
+
+.btn-outline-main {
+    color: #F48120;
+    background-color: transparent;
+    background-image: none;
+    border-color: var(--main);
+}
+
+.btn-outline-main:hover {
+    color: white;
+    background-color:#F48120;
+    border-color: var(--main);
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

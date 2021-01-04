@@ -1,0 +1,25 @@
+<!-- danh sách công việc -->
+<div class="card list-job">
+    <div class="card-header">
+        <h4>Danh sách công việc</h4>
+    </div>
+    <div *ngFor="let item of listTintuyendungs">
+        <div class="work-item">
+            <div class="row">
+                <div class="header col-3">
+                    <img class="logo" src="../../../../../assets/image/logocongty.jpg" alt="">
+                </div>
+                <div class="info col-7">
+                    <h3><a [routerLink]="['/ungvien/vieclam/', item.idTintuyendung]">{{item.tieude}}</a></h3>
+                    <span>{{item.tencongty}}</span><br>
+                    <span>{{item.idDiadiemlamviecNavigation.diachi}}/{{item.tenthanhpho}}</span><br>
+                    <span>Hết hạn:{{item.ngayhethan|date:'dd/MM/yyyy'}}</span><br>
+                    <span>phúc lợi</span><br>
+                    <a>Nộp đơn ứng tuyển</a> &nbsp;&nbsp;
+                    <a class="icon"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <hr />
+        </div>
+    </div>
+</div>

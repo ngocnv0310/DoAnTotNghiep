@@ -1,0 +1,83 @@
+<div id="demo1" class="carousel slide" data-interval="false">
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="row bg-white">
+                <div class="col-4" *ngFor="let item of listTest" (click)="Xemntd(item)">
+                    <div class="card">
+                        <div class="banner" style="background-image: #F1F1F1;">
+                            <img class="card-img-top" style="max-width: 100%;height: 200px;"
+                                [src]="createImgPath(item.bannercongty)" alt="Card image cap">
+                        </div>
+                        <div class="card-body hidetext">
+                            <div class="row">
+                                <div class="col-9">
+                                    <p class="ten-congty">{{item.tencongty}}</p>
+                                    <p class="card-text ">{{item.gioithieucongty}}</p>
+                                </div>
+                                <div class="col-3 text-right" style="font-size: 16px;">
+                                    <i class="fa fa-heart-o"></i>
+                                    <span class="d-block"> 123 </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="row bg-white">
+                <div class="col-4" *ngFor="let item of listTest">
+                    <div class="card">
+                        <div class="banner" style="background-image: #F1F1F1;">
+                            <img class="card-img-top" style="max-width: 100%;height: 200px;"
+                                [src]="createImgPath(item.bannercongty)" alt="Card image cap">
+                        </div>
+                        <div class="card-body hidetext">
+                            <div class="row">
+                                <div class="col-9">
+                                    <p class="ten-congty">{{item.tencongty}}</p>
+                                    <p class="card-text ">{{item.gioithieucongty}}</p>
+                                </div>
+                                <div class="col-3 text-right" style="font-size: 16px;">
+                                    <i class="fa fa-heart-o"></i>
+                                    <span class="d-block"> 123 </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="row bg-white">
+                <div class="col-4" *ngFor="let item of listTest">
+                    <div class="card">
+                        <div class="banner" style="background-image: #F1F1F1;">
+                            <img class="card-img-top" style="max-width: 100%;height: 200px;"
+                                [src]="createImgPath(item.bannercongty)" alt="Card image cap">
+                        </div>
+                        <div class="card-body hidetext">
+                            <div class="row">
+                                <div class="col-9">
+                                    <p class="ten-congty">{{item.tencongty}}</p>
+                                    <p class="card-text ">{{item.gioithieucongty}}</p>
+                                </div>
+                                <div class="col-3 text-right" style="font-size: 16px;">
+                                    <i class="fa fa-heart-o"></i>
+                                    <span class="d-block"> 123 </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- The dots/circles -->
+    <ul class="carousel-indicators position-relative" style="bottom: -15px;">
+        <li data-target="#demo1" class="dot active" (click)="indexlist=1;;onchange1()" data-slide-to="0"></li>
+        <li data-target="#demo1" class="dot" (click)="indexlist=2;onchange1()" data-slide-to="1"></li>
+        <li data-target="#demo1" class="dot" (click)="indexlist=3;onchange1()" data-slide-to="2"></li>
+    </ul>
+</div>
